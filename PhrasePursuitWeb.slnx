@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="PhrasePursuitWeb.Core/PhrasePursuitWeb.Core.csproj" />
   <Project Path="PhrasePursuitWeb.Web/PhrasePursuitWeb.Web.csproj" />
 </Solution>
