@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
   <Project Path="PhrasePursuitWeb.Core/PhrasePursuitWeb.Core.csproj" />
   <Project Path="PhrasePursuitWeb.Tests/PhrasePursuitWeb.Tests.csproj" />
   <Project Path="PhrasePursuitWeb.Web/PhrasePursuitWeb.Web.csproj" />
