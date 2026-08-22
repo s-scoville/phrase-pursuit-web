@@ -15,5 +15,6 @@ builder.Services.AddScoped(
 builder.Services.AddScoped<IStorageService, BrowserStorageService>();
 builder.Services.AddScoped<StatisticsManager>();
 builder.Services.AddScoped<SpinManager>();
+builder.Services.AddScoped<GameSessionService>();
 
 await builder.Build().RunAsync();
