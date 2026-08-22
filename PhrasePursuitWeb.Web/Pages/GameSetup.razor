@@ -1,5 +1,98 @@
 ﻿@page "/setup"
 
-<PageTitle>Game Setup</PageTitle>
+@using System.Net.Http.Json
+@using PhrasePursuitWeb.Core.AI
+@using PhrasePursuitWeb.Core.Enums
+@using PhrasePursuitWeb.Core.Interfaces
+@using PhrasePursuitWeb.Core.Managers
+@using PhrasePursuitWeb.Core.Models
+@using PhrasePursuitWeb.Web.Services
 
-<h1>Game Setup</h1>
+@inject HttpClient Http
+@inject IStorageService StorageService
+@inject StatisticsManager StatisticsManager
+@inject SpinManager SpinManager
+@inject GameSessionService GameSession
+@inject NavigationManager Navigation
+
+<h1>Phrase Pursuit</h1>
+
+<div>
+    <label for="playerName">Player Name</label>
+    <input id="playerName"
+           type="text"
+           @bind="playerName" />
+</div>
+
+<div>
+    <label for="difficulty">Difficulty</label>
+    <select id="difficulty"
+            @bind="selectedDifficulty">
+        <option value="@AiDifficulty.Easy">Easy</option>
+        <option value="@AiDifficulty.Normal">Normal</option>
+    </select>
+</div>
+
+<button @onclick="StartGameAsync">
+    Start Game
+</button>
+
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <p>@errorMessage</p>
+}
+
+@code {
+    private string playerName = string.Empty;
+
+    private AiDifficulty selectedDifficulty = AiDifficulty.Normal;
+
+    private string? errorMessage;
+
+
+    private async Task StartGameAsync()
+    {
+        errorMessage = null;
+
+        if (string.IsNullOrWhiteSpace(playerName))
+        {
+            errorMessage = "Please enter a player name.";
+            return;
+        }
+
+        try
+        {
+            List<Puzzle>? puzzles =
+                await Http.GetFromJsonAsync<List<Puzzle>>("Data/puzzles.json");
+
+            if (puzzles is null || puzzles.Count == 0)
+            {
+                errorMessage = "No puzzles could be loaded.";
+                return;
+            }
+
+            PuzzleManager puzzleManager =
+                new PuzzleManager(puzzles, StorageService);
+
+            AiController aiController =
+                new AiController(selectedDifficulty);
+
+            GameManager gameManager =
+                new GameManager(
+                    puzzleManager,
+                    SpinManager,
+                    StatisticsManager,
+                    aiController);
+
+            await gameManager.StartNewGameAsync(playerName);
+
+            GameSession.CurrentGame = gameManager;
+
+            Navigation.NavigateTo("/game");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Unable to start the game: {ex.Message}";
+        }
+    }
+}
