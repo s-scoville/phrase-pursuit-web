@@ -1,5 +1,8 @@
-﻿<h3>GameStatus</h3>
+﻿<div class="game-status">
+    @StatusMessage
+</div>
 
 @code {
-
+    [Parameter]
+    public string StatusMessage { get; set; } = string.Empty;
 }
