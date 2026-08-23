@@ -1,5 +1,36 @@
-﻿<h3>GameControls</h3>
+﻿<div class="game-controls">
+    <button disabled="@(!CanSpin)"
+            @onclick="OnSpin">
+        Spin
+    </button>
+
+    <button disabled="@(!CanBuyVowel)"
+            @onclick="OnBuyVowel">
+        Buy Vowel
+    </button>
+
+    <button disabled="@(!CanSolve)"
+            @onclick="OnSolve">
+        Solve
+    </button>
+</div>
 
 @code {
+    [Parameter]
+    public bool CanSpin { get; set; }
 
+    [Parameter]
+    public bool CanBuyVowel { get; set; }
+
+    [Parameter]
+    public bool CanSolve { get; set; }
+
+    [Parameter]
+    public EventCallback OnSpin { get; set; }
+
+    [Parameter]
+    public EventCallback OnBuyVowel { get; set; }
+
+    [Parameter]
+    public EventCallback OnSolve { get; set; }
 }

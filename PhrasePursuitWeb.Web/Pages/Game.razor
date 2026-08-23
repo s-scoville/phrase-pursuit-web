@@ -63,7 +63,19 @@
         </div>
 
         <div class="controls-section">
-            <GameControls />
+            <GameControls 
+                CanSpin="@(isHumanTurn && waitingForAction)"
+                CanBuyVowel="@(isHumanTurn && waitingForAction &&
+                    gameManager.CurrentGame.CurrentPlayer.CurrentWinnings >= 50 &&
+                    hasRemainingVowel)"
+                CanSolve="@(isHumanTurn && waitingForAction)"
+                OnSpin="HandleSpinAsync"
+                OnBuyVowel="HandleBuyVowel"
+                OnSolve="HandleSolveAsync" />
+
+            <input type="text"
+                   @bind="solveAttempt"
+                   placeholder="Enter puzzle solution" />
         </div>
 
     </div>
@@ -73,6 +85,18 @@
     private GameManager? gameManager;
     private string spinnerDisplayText = "---";
     private string statusMessage = string.Empty;
+    private string solveAttempt = string.Empty;
+
+    private bool isHumanTurn =>
+    gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
+
+    private bool waitingForAction =>
+        gameManager?.CurrentGame.CurrentPhase == TurnPhase.WaitingForAction;
+
+    private bool hasRemainingVowel =>
+        gameManager?.CurrentGame.GuessedLetters is not null &&
+        "AEIOU".Any(vowel =>
+            !gameManager.CurrentGame.GuessedLetters.Contains(vowel));
 
     protected override void OnInitialized()
     {
@@ -128,5 +152,247 @@
             statusMessage =
                 $"There are no {result.GuessedLetter}'s.";
         }
+
+        if (result.TurnEnded && !result.PuzzleCompleted)
+        {
+            await RunAiTurnsAsync();
+        }
+    }
+
+    private async Task HandleSpinAsync()
+    {
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        SpinResult spinResult = gameManager.Spin();
+
+        spinnerDisplayText = spinResult.Outcome switch
+        {
+            SpinOutcome.Money => spinResult.MoneyValue?.ToString("C0") ?? "$0",
+            SpinOutcome.Bankrupt => "BANKRUPT",
+            SpinOutcome.LoseTurn => "LOSE TURN",
+            _ => "---"
+        };
+
+        gameManager.ApplySpinResult(spinResult);
+
+        if (spinResult.Outcome == SpinOutcome.Money)
+        {
+            statusMessage = "Select a consonant.";
+        }
+        else
+        {
+            statusMessage = spinResult.Outcome == SpinOutcome.Bankrupt
+                ? "You landed on BANKRUPT."
+                : "You landed on LOSE TURN.";
+
+            await RunAiTurnsAsync();
+        }
+    }
+
+    private void HandleBuyVowel()
+    {
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        gameManager.BuyVowel();
+
+        statusMessage = "Select a vowel.";
+    }
+
+    private async Task HandleSolveAsync()
+    {
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(solveAttempt))
+        {
+            statusMessage = "Enter a puzzle solution first.";
+            return;
+        }
+
+        SolveResult result =
+            await gameManager.SolvePuzzleAsync(solveAttempt);
+
+        if (result.WasCorrect)
+        {
+            statusMessage = "You solved the puzzle!";
+        }
+        else
+        {
+            statusMessage =
+                "Incorrect. You lost your winnings and your turn.";
+
+            solveAttempt = string.Empty;
+
+            await RunAiTurnsAsync();
+        }
+    }
+
+    private async Task RunAiTurnsAsync()
+    {
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        while (!gameManager.CurrentGame.IsGameOver &&
+               gameManager.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Computer)
+        {
+            Player aiPlayer = gameManager.CurrentGame.CurrentPlayer;
+
+            statusMessage = $"{aiPlayer.Name} is thinking...";
+            StateHasChanged();
+
+            await Task.Delay(1500);
+
+            AiActionResult result =
+                await gameManager.RunAiTurnAsync();
+
+            switch (result.Action)
+            {
+                case AiAction.Spin:
+                    statusMessage = $"{aiPlayer.Name} decided to spin.";
+                    StateHasChanged();
+
+                    await Task.Delay(750);
+
+                    if (result.SpinResult is not null)
+                    {
+                        spinnerDisplayText = result.SpinResult.Outcome switch
+                        {
+                            SpinOutcome.Money =>
+                                result.SpinResult.MoneyValue?.ToString("C0") ?? "$0",
+
+                            SpinOutcome.Bankrupt => "BANKRUPT",
+
+                            SpinOutcome.LoseTurn => "LOSE TURN",
+
+                            _ => "---"
+                        };
+
+                        statusMessage = result.SpinResult.Outcome switch
+                        {
+                            SpinOutcome.Money =>
+                                $"{aiPlayer.Name} landed on {spinnerDisplayText}.",
+
+                            SpinOutcome.Bankrupt =>
+                                $"{aiPlayer.Name} landed on BANKRUPT.",
+
+                            SpinOutcome.LoseTurn =>
+                                $"{aiPlayer.Name} landed on LOSE TURN.",
+
+                            _ => $"{aiPlayer.Name} finished spinning."
+                        };
+
+                        StateHasChanged();
+                        await Task.Delay(750);
+                    }
+
+                    if (result.GuessResult is not null)
+                    {
+                        GuessResult guessResult = result.GuessResult;
+
+                        statusMessage =
+                            $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
+
+                        StateHasChanged();
+                        await Task.Delay(750);
+
+                        if (guessResult.WasCorrect)
+                        {
+                            string letterText =
+                                guessResult.Occurrences == 1
+                                    ? guessResult.GuessedLetter.ToString()
+                                    : $"{guessResult.GuessedLetter}'s";
+
+                            statusMessage =
+                                $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
+                                $"{guessResult.Occurrences} {letterText}.";
+
+                            if (guessResult.MoneyEarned > 0)
+                            {
+                                statusMessage +=
+                                    $" {aiPlayer.Name} earned {guessResult.MoneyEarned:C0}.";
+                            }
+                        }
+                        else
+                        {
+                            statusMessage =
+                                $"There are no {guessResult.GuessedLetter}'s.";
+                        }
+
+                        StateHasChanged();
+                        await Task.Delay(1000);
+                    }
+
+                    break;
+
+                case AiAction.BuyVowel:
+                    statusMessage = $"{aiPlayer.Name} decided to buy a vowel.";
+                    StateHasChanged();
+
+                    await Task.Delay(750);
+
+                    if (result.GuessResult is not null)
+                    {
+                        GuessResult guessResult = result.GuessResult;
+
+                        statusMessage =
+                            $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
+
+                        StateHasChanged();
+                        await Task.Delay(750);
+
+                        statusMessage = guessResult.WasCorrect
+                            ? $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
+                              $"{guessResult.Occurrences} {guessResult.GuessedLetter}" +
+                              $"{(guessResult.Occurrences == 1 ? "." : "'s.")}"
+                            : $"There are no {guessResult.GuessedLetter}'s.";
+
+                        StateHasChanged();
+                        await Task.Delay(1000);
+                    }
+
+                    break;
+
+                case AiAction.SolvePuzzle:
+                    statusMessage =
+                        $"{aiPlayer.Name} is attempting to solve the puzzle.";
+
+                    StateHasChanged();
+                    await Task.Delay(1000);
+
+                    if (result.SolveResult is not null)
+                    {
+                        statusMessage = result.SolveResult.WasCorrect
+                            ? $"{aiPlayer.Name} solved the puzzle!"
+                            : $"{aiPlayer.Name} failed to solve the puzzle.";
+
+                        StateHasChanged();
+                        await Task.Delay(1000);
+                    }
+
+                    break;
+            }
+        }
+
+        if (gameManager.CurrentGame.IsGameOver)
+        {
+            statusMessage = "Game over!";
+        }
+        else
+        {
+            statusMessage = "Your turn. Choose an action.";
+            spinnerDisplayText = "---";
+        }
+
+        StateHasChanged();
     }
 }
