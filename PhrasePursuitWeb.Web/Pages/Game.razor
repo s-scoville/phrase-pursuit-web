@@ -1,5 +1,63 @@
 ﻿@page "/game"
 
+@using PhrasePursuitWeb.Web.Services
+@using PhrasePursuitWeb.Web.Components.Game
+@using PhrasePursuitWeb.Core.Managers
+
+@inject GameSessionService GameSession
+@inject NavigationManager Navigation
+
 <PageTitle>Phrase Pursuit</PageTitle>
 
-<h1>Game</h1>
+<div class="game-page">
+
+    <div class="puzzle-section">
+        <PuzzleDisplay />
+    </div>
+
+    <div class="players-section">
+        <PlayerPanel />
+        <PlayerPanel />
+        <PlayerPanel />
+    </div>
+
+    <div class="interaction-section">
+
+        <div class="letters-section">
+            <LetterBoard />
+        </div>
+
+        <div class="side-section">
+
+            <div class="spinner-section">
+                <SpinnerDisplay />
+            </div>
+
+            <div class="status-section">
+                <GameStatus />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="controls-section">
+        <GameControls />
+    </div>
+
+</div>
+
+@code {
+    private GameManager? gameManager;
+
+    protected override void OnInitialized()
+    {
+        if (GameSession.CurrentGame is null)
+        {
+            Navigation.NavigateTo("/setup");
+            return;
+        }
+
+        gameManager = GameSession.CurrentGame;
+    }
+}
