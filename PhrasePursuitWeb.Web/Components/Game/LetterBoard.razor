@@ -1,5 +1,52 @@
-﻿<h3>LetterBoard</h3>
+﻿@using PhrasePursuitWeb.Core.Enums
+
+<div class="letter-board">
+    @foreach (char letter in Letters)
+    {
+        <button class="letter-button"
+                disabled="@IsLetterDisabled(letter)"
+                @onclick="() => LetterSelected.InvokeAsync(letter)">
+            @letter
+        </button>
+    }
+</div>
 
 @code {
+    private static readonly char[] Letters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
+    [Parameter]
+    public HashSet<char> GuessedLetters { get; set; } = new();
+
+    [Parameter]
+    public bool IsEnabled { get; set; }
+
+    [Parameter]
+    public TurnPhase CurrentPhase { get; set; }
+
+    [Parameter]
+    public EventCallback<char> LetterSelected { get; set; }
+
+
+    private bool IsLetterDisabled(char letter)
+    {
+        if (!IsEnabled || GuessedLetters.Contains(letter))
+        {
+            return true;
+        }
+
+        bool isVowel = "AEIOU".Contains(letter);
+
+        if (CurrentPhase == TurnPhase.WaitingForConsonant)
+        {
+            return isVowel;
+        }
+
+        if (CurrentPhase == TurnPhase.WaitingForVowel)
+        {
+            return !isVowel;
+        }
+
+        return true;
+    }
 }

@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "Id": 1,
+    "Category": "MUSIC",
+    "Phrase": "FAITHFULLY"
+  },
+  {
+    "Id": 2,
+    "Category": "MOVIES",
+    "Phrase": "THE GODFATHER"
+  },
+  {
+    "Id": 3,
+    "Category": "TV SHOWS",
+    "Phrase": "BREAKING BAD"
+  },
+  {
+    "Id": 4,
+    "Category": "BOOKS",
+    "Phrase": "TO KILL A MOCKINGBIRD"
+  },
+  {
+    "Id": 5,
+    "Category": "VIDEO GAMES",
+    "Phrase": "SONIC THE HEDGEHOG"
+  },
+  {
+    "Id": 6,
+    "Category": "MUSIC",
+    "Phrase": "DON'T STOP BELIEVIN'"
+  },
+  {
+    "Id": 7,
+    "Category": "MOVIES",
+    "Phrase": "BACK TO THE FUTURE"
+  },
+  {
+    "Id": 8,
+    "Category": "TV SHOWS",
+    "Phrase": "THE FRESH PRINCE OF BEL-AIR"
+  },
+  {
+    "Id": 9,
+    "Category": "BOOKS",
+    "Phrase": "THE HITCHHIKER'S GUIDE TO THE GALAXY"
+  },
+  {
+    "Id": 10,
+    "Category": "VIDEO GAMES",
+    "Phrase": "THE LEGEND OF ZELDA"
+  },
+  {
+    "Id": 11,
+    "Category": "PLACES",
+    "Phrase": "NEW YORK CITY"
+  },
+  {
+    "Id": 12,
+    "Category": "FOOD",
+    "Phrase": "MACARONI AND CHEESE"
+  }
+]
