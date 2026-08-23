@@ -1,5 +1,8 @@
-﻿<h3>SpinnerDisplay</h3>
+﻿<div class="spinner-display">
+    @DisplayText
+</div>
 
 @code {
-
+    [Parameter]
+    public string DisplayText { get; set; } = "---";
 }

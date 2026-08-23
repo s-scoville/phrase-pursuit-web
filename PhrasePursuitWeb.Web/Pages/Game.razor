@@ -43,7 +43,8 @@
             <div class="side-section">
 
                 <div class="spinner-section">
-                    <SpinnerDisplay />
+                    <SpinnerDisplay 
+                        DisplayText="@spinnerDisplayText" />
                 </div>
 
                 <div class="status-section">
@@ -63,6 +64,7 @@
 
 @code {
     private GameManager? gameManager;
+    private string spinnerDisplayText = "---";
 
     protected override void OnInitialized()
     {
