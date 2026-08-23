@@ -1,5 +1,17 @@
-﻿<h3>PuzzleDisplay</h3>
+﻿<div class="puzzle-display">
+    <div class="puzzle-category">
+        @Category
+    </div>
+
+    <div class="puzzle-phrase">
+        @PuzzleText
+    </div>
+</div>
 
 @code {
+    [Parameter]
+    public string Category { get; set; } = string.Empty;
 
+    [Parameter]
+    public string PuzzleText { get; set; } = string.Empty;
 }
