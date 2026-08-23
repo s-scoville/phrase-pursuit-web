@@ -3,6 +3,8 @@
 @using PhrasePursuitWeb.Web.Services
 @using PhrasePursuitWeb.Web.Components.Game
 @using PhrasePursuitWeb.Core.Managers
+@using PhrasePursuitWeb.Core.Enums
+@using PhrasePursuitWeb.Core.Models
 
 @inject GameSessionService GameSession
 @inject NavigationManager Navigation
@@ -37,7 +39,11 @@
         <div class="interaction-section">
 
             <div class="letters-section">
-                <LetterBoard />
+                <LetterBoard 
+                    GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
+                    IsEnabled="true"
+                    CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
+                    LetterSelected="HandleLetterSelectedAsync" />
             </div>
 
             <div class="side-section">
@@ -77,5 +83,50 @@
         }
 
         gameManager = GameSession.CurrentGame;
+    }
+
+    private async Task HandleLetterSelectedAsync(char letter)
+    {
+        GuessResult result;
+
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        if (gameManager.CurrentGame.CurrentPhase == TurnPhase.WaitingForConsonant)
+        {
+            result = await gameManager.GuessConsonantAsync(letter);
+        }
+        else if (gameManager.CurrentGame.CurrentPhase == TurnPhase.WaitingForVowel)
+        {
+            result = await gameManager.GuessVowelAsync(letter);
+        }
+        else
+        {
+            return;
+        }
+
+        if (result.WasCorrect)
+        {
+            string letterText =
+                result.Occurrences == 1
+                    ? result.GuessedLetter.ToString()
+                    : $"{result.GuessedLetter}'s";
+
+            statusMessage =
+                $"There {(result.Occurrences == 1 ? "is" : "are")} " +
+                $"{result.Occurrences} {letterText}.\n";
+
+            if (result.MoneyEarned > 0)
+            {
+                statusMessage += $" You earned {result.MoneyEarned:C0}.";
+            }
+        }
+        else
+        {
+            statusMessage =
+                $"There are no {result.GuessedLetter}'s.";
+        }
     }
 }
