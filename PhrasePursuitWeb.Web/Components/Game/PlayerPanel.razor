@@ -1,5 +1,20 @@
-﻿<h3>PlayerPanel</h3>
+﻿<div class="player-panel @(IsActive ? "active" : string.Empty)">
+    <div class="player-name">
+        @PlayerName
+    </div>
+
+    <div class="player-winnings">
+        @CurrentWinnings.ToString("C0")
+    </div>
+</div>
 
 @code {
+    [Parameter]
+    public string PlayerName { get; set; } = string.Empty;
 
+    [Parameter]
+    public int CurrentWinnings { get; set; }
+
+    [Parameter]
+    public bool IsActive { get; set; }
 }

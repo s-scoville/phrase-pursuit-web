@@ -20,9 +20,18 @@
         </div>
 
         <div class="players-section">
-            <PlayerPanel />
-            <PlayerPanel />
-            <PlayerPanel />
+            <PlayerPanel 
+                PlayerName="@gameManager.CurrentGame.Players[0].Name"
+                CurrentWinnings="@gameManager.CurrentGame.Players[0].CurrentWinnings"
+                IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 0" />
+            <PlayerPanel 
+                PlayerName="@gameManager.CurrentGame.Players[1].Name"
+                CurrentWinnings="@gameManager.CurrentGame.Players[1].CurrentWinnings"
+                IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 1" />
+            <PlayerPanel 
+                PlayerName="@gameManager.CurrentGame.Players[2].Name"
+                CurrentWinnings="@gameManager.CurrentGame.Players[2].CurrentWinnings"
+                IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 2" />
         </div>
 
         <div class="interaction-section">
