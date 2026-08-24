@@ -158,7 +158,14 @@
                 $"There are no {result.GuessedLetter}'s.";
         }
 
-        if (result.TurnEnded && !result.PuzzleCompleted)
+        if (result.PuzzleCompleted)
+        {
+            statusMessage = "You completed the puzzle!";
+            puzzleDisplayText = gameManager.GetPuzzleDisplay();
+            return;
+        }
+
+        if (result.TurnEnded)
         {
             await RunAiTurnsAsync();
         }
