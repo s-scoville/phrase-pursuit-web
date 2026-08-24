@@ -621,5 +621,21 @@ namespace PhrasePursuitWeb.Core.Managers
                 _aiNames[secondIndex]
             };
         }
+
+        /// <summary>
+        /// Retrieves the AI thinking time for the current player if they are a computer player.
+        /// </summary>
+        /// <returns>The AI thinking time in seconds.</returns>
+        /// <exception cref="InvalidOperationException">Thrown if the current player is not a computer player.</exception>
+        public int GetAiThinkingTime()
+        {
+            if (CurrentGame.CurrentPlayer.PlayerType != PlayerType.Computer)
+            {
+                throw new InvalidOperationException(
+                    "Thinking time is only available for AI players.");
+            }
+
+            return _aiController.GetThinkingTime();
+        }
     }
 }

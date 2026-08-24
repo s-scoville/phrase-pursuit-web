@@ -260,10 +260,14 @@
         {
             Player aiPlayer = gameManager.CurrentGame.CurrentPlayer;
 
+            int actionThinkingTime = gameManager.GetAiThinkingTime();
+            int guessThinkingTime = gameManager.GetAiThinkingTime();
+            int solveThinkingTime = gameManager.GetAiThinkingTime();
+
             statusMessage = $"{aiPlayer.Name} is thinking...";
             StateHasChanged();
 
-            await Task.Delay(1500);
+            await Task.Delay(actionThinkingTime * 1000);
 
             AiActionResult result =
                 await gameManager.RunAiTurnAsync();
@@ -305,18 +309,23 @@
                         };
 
                         StateHasChanged();
-                        await Task.Delay(750);
+                        await Task.Delay(1200);
                     }
 
                     if (result.GuessResult is not null)
                     {
                         GuessResult guessResult = result.GuessResult;
 
+                        statusMessage = $"{aiPlayer.Name} is thinking...";
+                        StateHasChanged();
+
+                        await Task.Delay(guessThinkingTime * 1000);
+
                         statusMessage =
                             $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
 
                         StateHasChanged();
-                        await Task.Delay(750);
+                        await Task.Delay(1200);
 
                         puzzleDisplayText = gameManager.GetPuzzleDisplay();
                         StateHasChanged();
@@ -354,17 +363,22 @@
                     statusMessage = $"{aiPlayer.Name} decided to buy a vowel.";
                     StateHasChanged();
 
-                    await Task.Delay(750);
+                    await Task.Delay(1200);
 
                     if (result.GuessResult is not null)
                     {
                         GuessResult guessResult = result.GuessResult;
 
+                        statusMessage = $"{aiPlayer.Name} is thinking...";
+                        StateHasChanged();
+
+                        await Task.Delay(guessThinkingTime * 1000);
+
                         statusMessage =
                             $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
 
                         StateHasChanged();
-                        await Task.Delay(750);
+                        await Task.Delay(1200);
 
                         puzzleDisplayText = gameManager.GetPuzzleDisplay();
                         StateHasChanged();
@@ -386,7 +400,7 @@
                         $"{aiPlayer.Name} is attempting to solve the puzzle.";
 
                     StateHasChanged();
-                    await Task.Delay(1000);
+                    await Task.Delay(solveThinkingTime * 1000);
 
                     if (result.SolveResult is not null)
                     {
