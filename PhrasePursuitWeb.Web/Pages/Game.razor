@@ -18,7 +18,7 @@
         <div class="puzzle-section">
             <PuzzleDisplay 
                 Category="@gameManager.CurrentGame.CurrentPuzzle.Category"
-                PuzzleText="@gameManager.GetPuzzleDisplay()"/>
+                PuzzleText="@puzzleDisplayText" />
         </div>
 
         <div class="players-section">
@@ -86,6 +86,7 @@
     private string spinnerDisplayText = "---";
     private string statusMessage = string.Empty;
     private string solveAttempt = string.Empty;
+    private string puzzleDisplayText = string.Empty;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -107,6 +108,7 @@
         }
 
         gameManager = GameSession.CurrentGame;
+        puzzleDisplayText = gameManager.GetPuzzleDisplay();
     }
 
     private async Task HandleLetterSelectedAsync(char letter)
@@ -142,10 +144,13 @@
                 $"There {(result.Occurrences == 1 ? "is" : "are")} " +
                 $"{result.Occurrences} {letterText}.\n";
 
+
             if (result.MoneyEarned > 0)
             {
                 statusMessage += $" You earned {result.MoneyEarned:C0}.";
             }
+
+            puzzleDisplayText = gameManager.GetPuzzleDisplay();
         }
         else
         {
@@ -153,7 +158,14 @@
                 $"There are no {result.GuessedLetter}'s.";
         }
 
-        if (result.TurnEnded && !result.PuzzleCompleted)
+        if (result.PuzzleCompleted)
+        {
+            statusMessage = "You completed the puzzle!";
+            puzzleDisplayText = gameManager.GetPuzzleDisplay();
+            return;
+        }
+
+        if (result.TurnEnded)
         {
             await RunAiTurnsAsync();
         }
@@ -223,6 +235,7 @@
         if (result.WasCorrect)
         {
             statusMessage = "You solved the puzzle!";
+            puzzleDisplayText = gameManager.GetPuzzleDisplay();
         }
         else
         {
@@ -247,10 +260,14 @@
         {
             Player aiPlayer = gameManager.CurrentGame.CurrentPlayer;
 
+            int actionThinkingTime = gameManager.GetAiThinkingTime();
+            int guessThinkingTime = gameManager.GetAiThinkingTime();
+            int solveThinkingTime = gameManager.GetAiThinkingTime();
+
             statusMessage = $"{aiPlayer.Name} is thinking...";
             StateHasChanged();
 
-            await Task.Delay(1500);
+            await Task.Delay(actionThinkingTime * 1000);
 
             AiActionResult result =
                 await gameManager.RunAiTurnAsync();
@@ -292,18 +309,26 @@
                         };
 
                         StateHasChanged();
-                        await Task.Delay(750);
+                        await Task.Delay(1200);
                     }
 
                     if (result.GuessResult is not null)
                     {
                         GuessResult guessResult = result.GuessResult;
 
+                        statusMessage = $"{aiPlayer.Name} is thinking...";
+                        StateHasChanged();
+
+                        await Task.Delay(guessThinkingTime * 1000);
+
                         statusMessage =
                             $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
 
                         StateHasChanged();
-                        await Task.Delay(750);
+                        await Task.Delay(1200);
+
+                        puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                        StateHasChanged();
 
                         if (guessResult.WasCorrect)
                         {
@@ -338,17 +363,25 @@
                     statusMessage = $"{aiPlayer.Name} decided to buy a vowel.";
                     StateHasChanged();
 
-                    await Task.Delay(750);
+                    await Task.Delay(1200);
 
                     if (result.GuessResult is not null)
                     {
                         GuessResult guessResult = result.GuessResult;
 
+                        statusMessage = $"{aiPlayer.Name} is thinking...";
+                        StateHasChanged();
+
+                        await Task.Delay(guessThinkingTime * 1000);
+
                         statusMessage =
                             $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
 
                         StateHasChanged();
-                        await Task.Delay(750);
+                        await Task.Delay(1200);
+
+                        puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                        StateHasChanged();
 
                         statusMessage = guessResult.WasCorrect
                             ? $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
@@ -367,13 +400,19 @@
                         $"{aiPlayer.Name} is attempting to solve the puzzle.";
 
                     StateHasChanged();
-                    await Task.Delay(1000);
+                    await Task.Delay(solveThinkingTime * 1000);
 
                     if (result.SolveResult is not null)
                     {
-                        statusMessage = result.SolveResult.WasCorrect
-                            ? $"{aiPlayer.Name} solved the puzzle!"
-                            : $"{aiPlayer.Name} failed to solve the puzzle.";
+                        if (result.SolveResult.WasCorrect)
+                        {
+                            statusMessage = $"{aiPlayer.Name} solved the puzzle!";
+                            puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                        }
+                        else
+                        {
+                            statusMessage = $"{aiPlayer.Name} failed to solve the puzzle.";
+                        }
 
                         StateHasChanged();
                         await Task.Delay(1000);

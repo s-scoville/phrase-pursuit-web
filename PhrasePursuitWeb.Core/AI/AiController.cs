@@ -158,7 +158,7 @@ namespace PhrasePursuitWeb.Core.AI
                 return currentGame.CurrentPuzzle.Phrase;
             }
 
-            return string.Empty;
+            return "INCORRECT SOLUTION";
         }
 
         /// <summary>
