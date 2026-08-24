@@ -18,7 +18,7 @@
         <div class="puzzle-section">
             <PuzzleDisplay 
                 Category="@gameManager.CurrentGame.CurrentPuzzle.Category"
-                PuzzleText="@gameManager.GetPuzzleDisplay()"/>
+                PuzzleText="@puzzleDisplayText" />
         </div>
 
         <div class="players-section">
@@ -86,6 +86,7 @@
     private string spinnerDisplayText = "---";
     private string statusMessage = string.Empty;
     private string solveAttempt = string.Empty;
+    private string puzzleDisplayText = string.Empty;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -107,6 +108,7 @@
         }
 
         gameManager = GameSession.CurrentGame;
+        puzzleDisplayText = gameManager.GetPuzzleDisplay();
     }
 
     private async Task HandleLetterSelectedAsync(char letter)
@@ -142,10 +144,13 @@
                 $"There {(result.Occurrences == 1 ? "is" : "are")} " +
                 $"{result.Occurrences} {letterText}.\n";
 
+
             if (result.MoneyEarned > 0)
             {
                 statusMessage += $" You earned {result.MoneyEarned:C0}.";
             }
+
+            puzzleDisplayText = gameManager.GetPuzzleDisplay();
         }
         else
         {
@@ -223,6 +228,7 @@
         if (result.WasCorrect)
         {
             statusMessage = "You solved the puzzle!";
+            puzzleDisplayText = gameManager.GetPuzzleDisplay();
         }
         else
         {
@@ -305,6 +311,9 @@
                         StateHasChanged();
                         await Task.Delay(750);
 
+                        puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                        StateHasChanged();
+
                         if (guessResult.WasCorrect)
                         {
                             string letterText =
@@ -350,6 +359,9 @@
                         StateHasChanged();
                         await Task.Delay(750);
 
+                        puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                        StateHasChanged();
+
                         statusMessage = guessResult.WasCorrect
                             ? $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
                               $"{guessResult.Occurrences} {guessResult.GuessedLetter}" +
@@ -371,9 +383,15 @@
 
                     if (result.SolveResult is not null)
                     {
-                        statusMessage = result.SolveResult.WasCorrect
-                            ? $"{aiPlayer.Name} solved the puzzle!"
-                            : $"{aiPlayer.Name} failed to solve the puzzle.";
+                        if (result.SolveResult.WasCorrect)
+                        {
+                            statusMessage = $"{aiPlayer.Name} solved the puzzle!";
+                            puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                        }
+                        else
+                        {
+                            statusMessage = $"{aiPlayer.Name} failed to solve the puzzle.";
+                        }
 
                         StateHasChanged();
                         await Task.Delay(1000);
