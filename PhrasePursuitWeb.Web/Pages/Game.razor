@@ -38,12 +38,20 @@
 
         <div class="interaction-section">
 
-            <div class="letters-section">
-                <LetterBoard 
-                    GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
-                    IsEnabled="true"
-                    CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
-                    LetterSelected="HandleLetterSelectedAsync" />
+            <div class="input-section">
+                @if (!isSolveMode)
+                {
+                    <LetterBoard 
+                        GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
+                        IsEnabled="true"
+                        CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
+                        LetterSelected="HandleLetterSelectedAsync" />
+                }
+                else
+                {
+                    <SolveBoard OnSubmit="HandleSolveSubmitAsync"
+                        OnCancel="() => isSolveMode = false" />
+                }
             </div>
 
             <div class="side-section">
@@ -71,11 +79,7 @@
                 CanSolve="@(isHumanTurn && waitingForAction)"
                 OnSpin="HandleSpinAsync"
                 OnBuyVowel="HandleBuyVowel"
-                OnSolve="HandleSolveAsync" />
-
-            <input type="text"
-                   @bind="solveAttempt"
-                   placeholder="Enter puzzle solution" />
+                OnSolve="() => isSolveMode = true" />
         </div>
 
     </div>
@@ -85,8 +89,8 @@
     private GameManager? gameManager;
     private string spinnerDisplayText = "---";
     private string statusMessage = string.Empty;
-    private string solveAttempt = string.Empty;
     private string puzzleDisplayText = string.Empty;
+    private bool isSolveMode = false;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -216,21 +220,17 @@
         statusMessage = "Select a vowel.";
     }
 
-    private async Task HandleSolveAsync()
+    private async Task HandleSolveSubmitAsync(string solution)
     {
         if (gameManager is null)
         {
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(solveAttempt))
-        {
-            statusMessage = "Enter a puzzle solution first.";
-            return;
-        }
-
         SolveResult result =
-            await gameManager.SolvePuzzleAsync(solveAttempt);
+            await gameManager.SolvePuzzleAsync(solution);
+
+        isSolveMode = false;
 
         if (result.WasCorrect)
         {
@@ -241,8 +241,6 @@
         {
             statusMessage =
                 "Incorrect. You lost your winnings and your turn.";
-
-            solveAttempt = string.Empty;
 
             await RunAiTurnsAsync();
         }
