@@ -159,6 +159,11 @@
 @code {
     private bool showResetConfirmation = false;
 
+    protected override async Task OnInitializedAsync()
+    {
+        await StatisticsManager.LoadStatisticsAsync();
+    }
+
     private async Task ConfirmReset()
     {
         StatisticsManager.Statistics.ResetStatistics();
