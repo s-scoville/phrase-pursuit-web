@@ -1,5 +1,169 @@
 ﻿@page "/statistics"
 
-<PageTitle>Statistics</PageTitle>
+@using PhrasePursuitWeb.Core.Managers
 
-<h1>Statistics</h1>
+@inject StatisticsManager StatisticsManager
+@inject NavigationManager Navigation
+
+<PageTitle>Phrase Pursuit - Statistics</PageTitle>
+
+<div class="header">
+    <h1>Statistics</h1>
+</div>
+
+<div class="statistics-page">
+    
+    <div class="game-record-section">
+
+        <div class="section-header">
+            <h2>Game Records</h2>
+        </div>
+
+        <div class="stats-grid">
+        
+            <div class="stat-card">
+            
+                <span class="stat-label">
+                    Total Games Played
+                </span>
+            
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.GamesPlayed
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Total Wins
+                </span>
+
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.GamesWon
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+            
+                <span class="stat-label">
+                    Total Losses
+                </span>
+
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.GamesLost
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Win Percentage
+                </span>
+            
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.WinPercentage.ToString("0.00")%
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="winnings-section">
+        
+        <div class="section-header">
+            <h2>Winnings</h2>
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Lifetime Winnings
+                </span>
+
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.LifetimeWinnings.ToString("C")
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Highest Winnings
+                </span>
+
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.HighestWinnings.ToString("C")
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Average Winnings
+                </span>
+
+                <span class="stat-value">
+                    @StatisticsManager.Statistics.AverageWinnings.ToString("C")
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="selection-section">
+
+        <button class="home-button" @onclick='() => Navigation.NavigateTo("/")'>
+            Home
+        </button>
+
+        @if (!showResetConfirmation)
+        {
+            <button class="reset-button"
+                    @onclick="() => showResetConfirmation = true">
+                Reset Statistics
+            </button>
+        }
+        else
+        {
+            <div class="reset-confirmation">
+                <span>Are you sure you want to reset all statistics?</span>
+
+                <button class="confirm-reset-button"
+                        @onclick="ConfirmReset">
+                    Reset
+                </button>
+
+                <button class="cancel-button"
+                        @onclick="() => showResetConfirmation = false">
+                    Cancel
+                </button>
+            </div>
+        }
+        
+    </div>
+
+</div>
+
+
+@code {
+    private bool showResetConfirmation = false;
+
+    private async Task ConfirmReset()
+    {
+        StatisticsManager.Statistics.ResetStatistics();
+        await StatisticsManager.SaveStatisticsAsync();
+
+        showResetConfirmation = false;
+    }
+}
