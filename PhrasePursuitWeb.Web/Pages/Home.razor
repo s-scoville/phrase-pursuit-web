@@ -1,7 +1,25 @@
 ﻿@page "/"
 
-<h1>Phrase Pursuit</h1>
+@inject NavigationManager Navigation
 
-<p>Welcome to Phrase Pursuit!</p>
+<div class="header">
+    
+    <h1>
+        Phrase Pursuit
+    </h1>
 
-<a href="/setup">Play Game</a>
+</div>
+
+<div class="navigation-section">
+
+    <button class="new-game-button"
+        @onclick='() => Navigation.NavigateTo("/setup")'>
+        Play Game
+    </button>
+
+    <button class="statistics-button"
+        @onclick='() => Navigation.NavigateTo("/statistics")'>
+        Statistics
+    </button>
+    
+</div>
