@@ -1,0 +1,71 @@
+﻿<div class="solve-board">
+
+    <div class="solve-board-header">
+        <h3>Enter Your Solution</h3>
+    </div>
+
+    <div class="input-section">
+
+        <input type="text"
+               class="solution-input"
+               placeholder="Enter your solution here"
+               @bind="solutionText" />
+
+        @if (!string.IsNullOrWhiteSpace(validationMessage))
+        {
+            <div class="validation-message">
+                @validationMessage
+            </div>
+        }
+
+    </div>
+
+    <div class="input-buttons">
+
+        <button class="submit-button"
+                @onclick="SubmitSolutionAsync">
+            Submit
+        </button>
+
+        <button class="cancel-button"
+                @onclick="CancelSolutionAsync">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
+
+@code {
+    private string solutionText = string.Empty;
+    private string? validationMessage;
+
+    [Parameter]
+    public EventCallback<string> OnSubmit { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+
+    private async Task SubmitSolutionAsync()
+    {
+        validationMessage = null;
+
+        if (string.IsNullOrWhiteSpace(solutionText))
+        {
+            validationMessage = "Please enter a solution.";
+            return;
+        }
+
+        await OnSubmit.InvokeAsync(solutionText);
+    }
+
+
+    private async Task CancelSolutionAsync()
+    {
+        solutionText = string.Empty;
+        validationMessage = null;
+
+        await OnCancel.InvokeAsync();
+    }
+}
