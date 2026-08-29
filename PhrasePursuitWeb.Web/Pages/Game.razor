@@ -36,54 +36,68 @@
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 2" />
         </div>
 
-        <div class="interaction-section">
-
-            <div class="input-section">
-                @if (!isSolveMode)
-                {
-                    <LetterBoard 
-                        GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
-                        IsEnabled="true"
-                        CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
-                        LetterSelected="HandleLetterSelectedAsync" />
-                }
-                else
-                {
-                    <SolveBoard OnSubmit="HandleSolveSubmitAsync"
-                        OnCancel="() => isSolveMode = false" />
-                }
+        @if (gameManager.CurrentGame.IsGameOver)
+        {
+            <div class="game-over-section">
+                <GameOverPanel 
+                    ResultMessage="@gameOverResultMessage"
+                    OnPlayAgain="HandlePlayAgainAsync"
+                    OnGameSetup='() => Navigation.NavigateTo("/setup")'
+                    OnMainMenu='() => Navigation.NavigateTo("/")' />
             </div>
+        }
+        else {
+            <div class="interaction-section">
 
-            <div class="side-section">
-
-                <div class="spinner-section">
-                    <SpinnerDisplay 
-                        DisplayText="@spinnerDisplayText" />
+                <div class="input-section">
+                    @if (!isSolveMode)
+                    {
+                        <LetterBoard 
+                            GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
+                            IsEnabled="true"
+                            CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
+                            LetterSelected="HandleLetterSelectedAsync" />
+                    }
+                    else
+                    {
+                        <SolveBoard OnSubmit="HandleSolveSubmitAsync"
+                            OnCancel="() => isSolveMode = false" />
+                    }
                 </div>
 
-                <div class="status-section">
-                    <GameStatus 
-                        StatusMessage="@statusMessage" />
+                <div class="side-section">
+
+                    <div class="spinner-section">
+                        <SpinnerDisplay 
+                            DisplayText="@spinnerDisplayText" />
+                    </div>
+
+                    <div class="status-section">
+                        <GameStatus 
+                            StatusMessage="@statusMessage" />
+                    </div>
+
                 </div>
 
+                <div class="controls-section">
+                    <GameControls 
+                        CanSpin="@(isHumanTurn && waitingForAction)"
+                        CanBuyVowel="@(isHumanTurn && waitingForAction &&
+                            gameManager.CurrentGame.CurrentPlayer.CurrentWinnings >= 50 &&
+                            hasRemainingVowel)"
+                        CanSolve="@(isHumanTurn && waitingForAction)"
+                        OnSpin="HandleSpinAsync"
+                        OnBuyVowel="HandleBuyVowel"
+                        OnSolve="() => isSolveMode = true" />
+                </div>
+        
             </div>
 
-        </div>
-
-        <div class="controls-section">
-            <GameControls 
-                CanSpin="@(isHumanTurn && waitingForAction)"
-                CanBuyVowel="@(isHumanTurn && waitingForAction &&
-                    gameManager.CurrentGame.CurrentPlayer.CurrentWinnings >= 50 &&
-                    hasRemainingVowel)"
-                CanSolve="@(isHumanTurn && waitingForAction)"
-                OnSpin="HandleSpinAsync"
-                OnBuyVowel="HandleBuyVowel"
-                OnSolve="() => isSolveMode = true" />
-        </div>
+        }
 
     </div>
 }
+
 
 @code {
     private GameManager? gameManager;
@@ -91,6 +105,7 @@
     private string statusMessage = string.Empty;
     private string puzzleDisplayText = string.Empty;
     private bool isSolveMode = false;
+    private string gameOverResultMessage = string.Empty;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -165,6 +180,8 @@
         if (result.PuzzleCompleted)
         {
             statusMessage = "You completed the puzzle!";
+            gameOverResultMessage =
+                $"You completed the puzzle!\nYou won {gameManager.CurrentGame.Players[0].CurrentWinnings:C0}!";
             puzzleDisplayText = gameManager.GetPuzzleDisplay();
             return;
         }
@@ -235,6 +252,8 @@
         if (result.WasCorrect)
         {
             statusMessage = "You solved the puzzle!";
+            gameOverResultMessage =
+                $"You solved the puzzle!\nYou won {gameManager.CurrentGame.Players[0].CurrentWinnings:C0}!";
             puzzleDisplayText = gameManager.GetPuzzleDisplay();
         }
         else
@@ -325,6 +344,12 @@
                         StateHasChanged();
                         await Task.Delay(1200);
 
+                        if (guessResult.PuzzleCompleted)
+                        {
+                            gameOverResultMessage =
+                                $"{aiPlayer.Name} completed the puzzle!";
+                        }
+
                         puzzleDisplayText = gameManager.GetPuzzleDisplay();
                         StateHasChanged();
 
@@ -378,6 +403,12 @@
                         StateHasChanged();
                         await Task.Delay(1200);
 
+                        if (guessResult.PuzzleCompleted)
+                        {
+                            gameOverResultMessage =
+                                $"{aiPlayer.Name} completed the puzzle!";
+                        }
+
                         puzzleDisplayText = gameManager.GetPuzzleDisplay();
                         StateHasChanged();
 
@@ -405,6 +436,7 @@
                         if (result.SolveResult.WasCorrect)
                         {
                             statusMessage = $"{aiPlayer.Name} solved the puzzle!";
+                            gameOverResultMessage = $"{aiPlayer.Name} solved the puzzle!";
                             puzzleDisplayText = gameManager.GetPuzzleDisplay();
                         }
                         else
@@ -431,5 +463,21 @@
         }
 
         StateHasChanged();
+    }
+
+    private async Task HandlePlayAgainAsync()
+    {
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        await gameManager.StartNewGameAsync(GameSession.PlayerName);
+
+        puzzleDisplayText = gameManager.GetPuzzleDisplay();
+        spinnerDisplayText = "---";
+        statusMessage = "Your turn. Choose an action.";
+        gameOverResultMessage = string.Empty;
+        isSolveMode = false;
     }
 }

@@ -87,6 +87,7 @@
             await gameManager.StartNewGameAsync(playerName);
 
             GameSession.CurrentGame = gameManager;
+            GameSession.PlayerName = playerName;
 
             Navigation.NavigateTo("/game");
         }
