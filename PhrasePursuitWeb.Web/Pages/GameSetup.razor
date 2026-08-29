@@ -71,6 +71,8 @@
                 return;
             }
 
+            await StatisticsManager.LoadStatisticsAsync();
+
             PuzzleManager puzzleManager =
                 new PuzzleManager(puzzles, StorageService);
 
