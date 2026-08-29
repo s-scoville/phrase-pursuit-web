@@ -63,7 +63,7 @@
         try
         {
             List<Puzzle>? puzzles =
-                await Http.GetFromJsonAsync<List<Puzzle>>("Data/puzzles.json");
+                await Http.GetFromJsonAsync<List<Puzzle>>("data/puzzles.json");
 
             if (puzzles is null || puzzles.Count == 0)
             {
