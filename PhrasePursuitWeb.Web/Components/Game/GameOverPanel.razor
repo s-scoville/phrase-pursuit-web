@@ -1,0 +1,50 @@
+﻿<div class="game-over-panel">
+
+    <div class="game-over-header">
+
+        <h3>Game Over</h3>
+
+    </div>
+
+    <div class="game-over-result">
+
+        <p>@ResultMessage</p>
+
+    </div>
+
+    <div class="game-over-buttons">
+
+        <button class="play-again-button"
+                @onclick="OnPlayAgain">
+            Play Again
+        </button>
+
+        <button class="game-setup-button"
+                @onclick="OnGameSetup">
+            Game Setup
+        </button>
+
+        <button class="main-menu-button"
+                @onclick="OnMainMenu">
+            Main Menu
+        </button>
+
+    </div>
+
+</div>
+
+@code {
+
+    [Parameter]
+    public string ResultMessage { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback OnPlayAgain { get; set; }
+
+    [Parameter]
+    public EventCallback OnGameSetup { get; set; }
+
+    [Parameter]
+    public EventCallback OnMainMenu { get; set; }
+
+}
