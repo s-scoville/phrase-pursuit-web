@@ -11,5 +11,10 @@ namespace PhrasePursuitWeb.Web.Services
         /// Gets or sets the game manager for the active game session.
         /// </summary>
         public GameManager? CurrentGame { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the player for the active game session.
+        /// </summary>
+        public string PlayerName { get; set; } = string.Empty;
     }
 }

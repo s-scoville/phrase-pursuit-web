@@ -24,69 +24,91 @@
         <div class="players-section">
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[0].Name"
-                CurrentWinnings="@gameManager.CurrentGame.Players[0].CurrentWinnings"
+                CurrentWinnings="@displayedWinnings[0]"
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 0" />
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[1].Name"
-                CurrentWinnings="@gameManager.CurrentGame.Players[1].CurrentWinnings"
+                CurrentWinnings="@displayedWinnings[1]"
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 1" />
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[2].Name"
-                CurrentWinnings="@gameManager.CurrentGame.Players[2].CurrentWinnings"
+                CurrentWinnings="@displayedWinnings[2]"
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 2" />
         </div>
 
-        <div class="interaction-section">
-
-            <div class="letters-section">
-                <LetterBoard 
-                    GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
-                    IsEnabled="true"
-                    CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
-                    LetterSelected="HandleLetterSelectedAsync" />
+        @if (showGameOver)
+        {
+            <div class="game-over-section">
+                <GameOverPanel 
+                    ResultMessage="@gameOverResultMessage"
+                    OnPlayAgain="HandlePlayAgainAsync"
+                    OnGameSetup='() => Navigation.NavigateTo("/setup")'
+                    OnMainMenu='() => Navigation.NavigateTo("/")' />
             </div>
+        }
+        else {
+            <div class="interaction-section">
 
-            <div class="side-section">
-
-                <div class="spinner-section">
-                    <SpinnerDisplay 
-                        DisplayText="@spinnerDisplayText" />
+                <div class="input-section">
+                    @if (!isSolveMode)
+                    {
+                        <LetterBoard 
+                            GuessedLetters="@gameManager.CurrentGame.GuessedLetters"
+                            IsEnabled="true"
+                            CurrentPhase="@gameManager.CurrentGame.CurrentPhase"
+                            LetterSelected="HandleLetterSelectedAsync" />
+                    }
+                    else
+                    {
+                        <SolveBoard OnSubmit="HandleSolveSubmitAsync"
+                            OnCancel="() => isSolveMode = false" />
+                    }
                 </div>
 
-                <div class="status-section">
-                    <GameStatus 
-                        StatusMessage="@statusMessage" />
+                <div class="side-section">
+
+                    <div class="spinner-section">
+                        <SpinnerDisplay 
+                            DisplayText="@spinnerDisplayText" />
+                    </div>
+
+                    <div class="status-section">
+                        <GameStatus 
+                            StatusMessage="@statusMessage" />
+                    </div>
+
                 </div>
 
+                <div class="controls-section">
+                    <GameControls 
+                        CanSpin="@canHumanAct"
+                        CanBuyVowel="@(canHumanAct &&
+                            gameManager.CurrentGame.CurrentPlayer.CurrentWinnings >= 50 &&
+                            hasRemainingVowel)"
+                        CanSolve="@canHumanAct"
+                        OnSpin="HandleSpinAsync"
+                        OnBuyVowel="HandleBuyVowel"
+                        OnSolve="() => isSolveMode = true" />
+                </div>
+        
             </div>
 
-        </div>
-
-        <div class="controls-section">
-            <GameControls 
-                CanSpin="@(isHumanTurn && waitingForAction)"
-                CanBuyVowel="@(isHumanTurn && waitingForAction &&
-                    gameManager.CurrentGame.CurrentPlayer.CurrentWinnings >= 50 &&
-                    hasRemainingVowel)"
-                CanSolve="@(isHumanTurn && waitingForAction)"
-                OnSpin="HandleSpinAsync"
-                OnBuyVowel="HandleBuyVowel"
-                OnSolve="HandleSolveAsync" />
-
-            <input type="text"
-                   @bind="solveAttempt"
-                   placeholder="Enter puzzle solution" />
-        </div>
+        }
 
     </div>
 }
+
 
 @code {
     private GameManager? gameManager;
     private string spinnerDisplayText = "---";
     private string statusMessage = string.Empty;
-    private string solveAttempt = string.Empty;
     private string puzzleDisplayText = string.Empty;
+    private bool isSolveMode = false;
+    private string gameOverResultMessage = string.Empty;
+    private bool isAiTurnInProgress = false;
+    private int[] displayedWinnings = new int[3];
+    private bool showGameOver = false;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -99,6 +121,11 @@
         "AEIOU".Any(vowel =>
             !gameManager.CurrentGame.GuessedLetters.Contains(vowel));
 
+    private bool canHumanAct =>
+        isHumanTurn &&
+        waitingForAction &&
+        !isAiTurnInProgress;
+
     protected override void OnInitialized()
     {
         if (GameSession.CurrentGame is null)
@@ -109,6 +136,12 @@
 
         gameManager = GameSession.CurrentGame;
         puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+        for (int i = 0; i < gameManager.CurrentGame.Players.Count; i++)
+        {
+            displayedWinnings[i] =
+                gameManager.CurrentGame.Players[i].CurrentWinnings;
+        }
     }
 
     private async Task HandleLetterSelectedAsync(char letter)
@@ -123,10 +156,14 @@
         if (gameManager.CurrentGame.CurrentPhase == TurnPhase.WaitingForConsonant)
         {
             result = await gameManager.GuessConsonantAsync(letter);
+            displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
         }
         else if (gameManager.CurrentGame.CurrentPhase == TurnPhase.WaitingForVowel)
         {
             result = await gameManager.GuessVowelAsync(letter);
+            displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
         }
         else
         {
@@ -161,7 +198,11 @@
         if (result.PuzzleCompleted)
         {
             statusMessage = "You completed the puzzle!";
+            gameOverResultMessage =
+                $"You completed the puzzle!\nYou won {gameManager.CurrentGame.Players[0].CurrentWinnings:C0}!";
             puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+            showGameOver = true;
             return;
         }
 
@@ -200,6 +241,9 @@
                 ? "You landed on BANKRUPT."
                 : "You landed on LOSE TURN.";
 
+            displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
+
             await RunAiTurnsAsync();
         }
     }
@@ -216,33 +260,34 @@
         statusMessage = "Select a vowel.";
     }
 
-    private async Task HandleSolveAsync()
+    private async Task HandleSolveSubmitAsync(string solution)
     {
         if (gameManager is null)
         {
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(solveAttempt))
-        {
-            statusMessage = "Enter a puzzle solution first.";
-            return;
-        }
-
         SolveResult result =
-            await gameManager.SolvePuzzleAsync(solveAttempt);
+            await gameManager.SolvePuzzleAsync(solution);
+
+        displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
+
+        isSolveMode = false;
 
         if (result.WasCorrect)
         {
             statusMessage = "You solved the puzzle!";
+            gameOverResultMessage =
+                $"You solved the puzzle!\nYou won {gameManager.CurrentGame.Players[0].CurrentWinnings:C0}!";
             puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+            showGameOver = true;
         }
         else
         {
             statusMessage =
                 "Incorrect. You lost your winnings and your turn.";
-
-            solveAttempt = string.Empty;
 
             await RunAiTurnsAsync();
         }
@@ -255,183 +300,264 @@
             return;
         }
 
-        while (!gameManager.CurrentGame.IsGameOver &&
-               gameManager.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Computer)
+        isAiTurnInProgress = true;
+
+        try
         {
-            Player aiPlayer = gameManager.CurrentGame.CurrentPlayer;
-
-            int actionThinkingTime = gameManager.GetAiThinkingTime();
-            int guessThinkingTime = gameManager.GetAiThinkingTime();
-            int solveThinkingTime = gameManager.GetAiThinkingTime();
-
-            statusMessage = $"{aiPlayer.Name} is thinking...";
-            StateHasChanged();
-
-            await Task.Delay(actionThinkingTime * 1000);
-
-            AiActionResult result =
-                await gameManager.RunAiTurnAsync();
-
-            switch (result.Action)
+            while (!gameManager.CurrentGame.IsGameOver &&
+                   gameManager.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Computer)
             {
-                case AiAction.Spin:
-                    statusMessage = $"{aiPlayer.Name} decided to spin.";
-                    StateHasChanged();
+                int aiPlayerIndex =
+                    gameManager.CurrentGame.CurrentPlayerIndex;
 
-                    await Task.Delay(750);
+                Player aiPlayer =
+                    gameManager.CurrentGame.CurrentPlayer;
 
-                    if (result.SpinResult is not null)
-                    {
-                        spinnerDisplayText = result.SpinResult.Outcome switch
+                int actionThinkingTime = gameManager.GetAiThinkingTime();
+                int guessThinkingTime = gameManager.GetAiThinkingTime();
+                int solveThinkingTime = gameManager.GetAiThinkingTime();
+
+                statusMessage = $"{aiPlayer.Name} is thinking...";
+                StateHasChanged();
+
+                await Task.Delay(actionThinkingTime * 1000);
+
+                AiActionResult result =
+                    await gameManager.RunAiTurnAsync();
+
+                switch (result.Action)
+                {
+                    case AiAction.Spin:
+                        statusMessage = $"{aiPlayer.Name} decided to spin.";
+                        StateHasChanged();
+
+                        await Task.Delay(750);
+
+                        if (result.SpinResult is not null)
                         {
-                            SpinOutcome.Money =>
-                                result.SpinResult.MoneyValue?.ToString("C0") ?? "$0",
+                            spinnerDisplayText = result.SpinResult.Outcome switch
+                            {
+                                SpinOutcome.Money =>
+                                    result.SpinResult.MoneyValue?.ToString("C0") ?? "$0",
 
-                            SpinOutcome.Bankrupt => "BANKRUPT",
+                                SpinOutcome.Bankrupt => "BANKRUPT",
 
-                            SpinOutcome.LoseTurn => "LOSE TURN",
+                                SpinOutcome.LoseTurn => "LOSE TURN",
 
-                            _ => "---"
-                        };
+                                _ => "---"
+                            };
 
-                        statusMessage = result.SpinResult.Outcome switch
+                            statusMessage = result.SpinResult.Outcome switch
+                            {
+                                SpinOutcome.Money =>
+                                    $"{aiPlayer.Name} landed on {spinnerDisplayText}.",
+
+                                SpinOutcome.Bankrupt =>
+                                    $"{aiPlayer.Name} landed on BANKRUPT.",
+
+                                SpinOutcome.LoseTurn =>
+                                    $"{aiPlayer.Name} landed on LOSE TURN.",
+
+                                _ => $"{aiPlayer.Name} finished spinning."
+                            };
+
+                            if (result.SpinResult.Outcome == SpinOutcome.Bankrupt)
+                            {
+                                displayedWinnings[aiPlayerIndex] =
+                                    aiPlayer.CurrentWinnings;
+                            }
+
+                            StateHasChanged();
+                            await Task.Delay(1200);
+                        }
+
+                        if (result.GuessResult is not null)
                         {
-                            SpinOutcome.Money =>
-                                $"{aiPlayer.Name} landed on {spinnerDisplayText}.",
+                            GuessResult guessResult = result.GuessResult;
 
-                            SpinOutcome.Bankrupt =>
-                                $"{aiPlayer.Name} landed on BANKRUPT.",
+                            statusMessage = $"{aiPlayer.Name} is thinking...";
+                            StateHasChanged();
 
-                            SpinOutcome.LoseTurn =>
-                                $"{aiPlayer.Name} landed on LOSE TURN.",
-
-                            _ => $"{aiPlayer.Name} finished spinning."
-                        };
-
-                        StateHasChanged();
-                        await Task.Delay(1200);
-                    }
-
-                    if (result.GuessResult is not null)
-                    {
-                        GuessResult guessResult = result.GuessResult;
-
-                        statusMessage = $"{aiPlayer.Name} is thinking...";
-                        StateHasChanged();
-
-                        await Task.Delay(guessThinkingTime * 1000);
-
-                        statusMessage =
-                            $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
-
-                        StateHasChanged();
-                        await Task.Delay(1200);
-
-                        puzzleDisplayText = gameManager.GetPuzzleDisplay();
-                        StateHasChanged();
-
-                        if (guessResult.WasCorrect)
-                        {
-                            string letterText =
-                                guessResult.Occurrences == 1
-                                    ? guessResult.GuessedLetter.ToString()
-                                    : $"{guessResult.GuessedLetter}'s";
+                            await Task.Delay(guessThinkingTime * 1000);
 
                             statusMessage =
-                                $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
-                                $"{guessResult.Occurrences} {letterText}.";
+                                $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
 
-                            if (guessResult.MoneyEarned > 0)
+                            StateHasChanged();
+                            await Task.Delay(1200);
+
+                            if (guessResult.PuzzleCompleted)
                             {
-                                statusMessage +=
-                                    $" {aiPlayer.Name} earned {guessResult.MoneyEarned:C0}.";
+                                gameOverResultMessage =
+                                    $"{aiPlayer.Name} completed the puzzle!";
+                            }
+
+                            puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+                            if (guessResult.WasCorrect)
+                            {
+                                string letterText =
+                                    guessResult.Occurrences == 1
+                                        ? guessResult.GuessedLetter.ToString()
+                                        : $"{guessResult.GuessedLetter}'s";
+
+                                statusMessage =
+                                    $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
+                                    $"{guessResult.Occurrences} {letterText}.";
+
+                                if (guessResult.MoneyEarned > 0)
+                                {
+                                    statusMessage +=
+                                        $" {aiPlayer.Name} earned {guessResult.MoneyEarned:C0}.";
+                                }
+                            }
+                            else
+                            {
+                                statusMessage =
+                                    $"There are no {guessResult.GuessedLetter}'s.";
+                            }
+
+                            displayedWinnings[aiPlayerIndex] =
+                                aiPlayer.CurrentWinnings;
+
+                            StateHasChanged();
+                            await Task.Delay(1000);
+
+                            if (guessResult.PuzzleCompleted)
+                            {
+                                showGameOver = true;
+                                StateHasChanged();
                             }
                         }
-                        else
-                        {
-                            statusMessage =
-                                $"There are no {guessResult.GuessedLetter}'s.";
-                        }
 
-                        StateHasChanged();
-                        await Task.Delay(1000);
-                    }
+                        break;
 
-                    break;
-
-                case AiAction.BuyVowel:
-                    statusMessage = $"{aiPlayer.Name} decided to buy a vowel.";
-                    StateHasChanged();
-
-                    await Task.Delay(1200);
-
-                    if (result.GuessResult is not null)
-                    {
-                        GuessResult guessResult = result.GuessResult;
-
-                        statusMessage = $"{aiPlayer.Name} is thinking...";
+                    case AiAction.BuyVowel:
+                        statusMessage = $"{aiPlayer.Name} decided to buy a vowel.";
                         StateHasChanged();
 
-                        await Task.Delay(guessThinkingTime * 1000);
-
-                        statusMessage =
-                            $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
-
-                        StateHasChanged();
                         await Task.Delay(1200);
 
-                        puzzleDisplayText = gameManager.GetPuzzleDisplay();
-                        StateHasChanged();
-
-                        statusMessage = guessResult.WasCorrect
-                            ? $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
-                              $"{guessResult.Occurrences} {guessResult.GuessedLetter}" +
-                              $"{(guessResult.Occurrences == 1 ? "." : "'s.")}"
-                            : $"There are no {guessResult.GuessedLetter}'s.";
-
-                        StateHasChanged();
-                        await Task.Delay(1000);
-                    }
-
-                    break;
-
-                case AiAction.SolvePuzzle:
-                    statusMessage =
-                        $"{aiPlayer.Name} is attempting to solve the puzzle.";
-
-                    StateHasChanged();
-                    await Task.Delay(solveThinkingTime * 1000);
-
-                    if (result.SolveResult is not null)
-                    {
-                        if (result.SolveResult.WasCorrect)
+                        if (result.GuessResult is not null)
                         {
-                            statusMessage = $"{aiPlayer.Name} solved the puzzle!";
+                            GuessResult guessResult = result.GuessResult;
+
+                            statusMessage = $"{aiPlayer.Name} is thinking...";
+                            StateHasChanged();
+
+                            await Task.Delay(guessThinkingTime * 1000);
+
+                            statusMessage =
+                                $"{aiPlayer.Name} guessed {guessResult.GuessedLetter}.";
+
+                            StateHasChanged();
+                            await Task.Delay(1200);
+
+                            if (guessResult.PuzzleCompleted)
+                            {
+                                gameOverResultMessage =
+                                    $"{aiPlayer.Name} completed the puzzle!";
+                            }
+
                             puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+                            statusMessage = guessResult.WasCorrect
+                                ? $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
+                                  $"{guessResult.Occurrences} {guessResult.GuessedLetter}" +
+                                  $"{(guessResult.Occurrences == 1 ? "." : "'s.")}"
+                                : $"There are no {guessResult.GuessedLetter}'s.";
+
+                            displayedWinnings[aiPlayerIndex] =
+                                aiPlayer.CurrentWinnings;
+
+                            StateHasChanged();
+                            await Task.Delay(1000);
+
+                            if (guessResult.PuzzleCompleted)
+                            {
+                                showGameOver = true;
+                                StateHasChanged();
+                            }
                         }
-                        else
-                        {
-                            statusMessage = $"{aiPlayer.Name} failed to solve the puzzle.";
-                        }
+
+                        break;
+
+                    case AiAction.SolvePuzzle:
+                        statusMessage =
+                            $"{aiPlayer.Name} is attempting to solve the puzzle.";
 
                         StateHasChanged();
-                        await Task.Delay(1000);
-                    }
+                        await Task.Delay(solveThinkingTime * 1000);
 
-                    break;
+                        if (result.SolveResult is not null)
+                        {
+                            if (result.SolveResult.WasCorrect)
+                            {
+                                statusMessage = $"{aiPlayer.Name} solved the puzzle!";
+                                gameOverResultMessage = $"{aiPlayer.Name} solved the puzzle!";
+                                puzzleDisplayText = gameManager.GetPuzzleDisplay();
+                            }
+                            else
+                            {
+                                statusMessage = $"{aiPlayer.Name} failed to solve the puzzle.";
+                            }
+                
+                            displayedWinnings[aiPlayerIndex] =
+                                aiPlayer.CurrentWinnings;
+
+                            StateHasChanged();
+                            await Task.Delay(1000);
+
+                            if (result.SolveResult.WasCorrect)
+                            {
+                                showGameOver = true;
+                                StateHasChanged();
+                            }
+                        }
+
+                        break;
+                }
+            }
+
+            if (gameManager.CurrentGame.IsGameOver)
+            {
+                statusMessage = "Game over!";
+            }
+            else
+            {
+                statusMessage = "Your turn. Choose an action.";
+                spinnerDisplayText = "---";
             }
         }
 
-        if (gameManager.CurrentGame.IsGameOver)
+        finally
         {
-            statusMessage = "Game over!";
-        }
-        else
-        {
-            statusMessage = "Your turn. Choose an action.";
-            spinnerDisplayText = "---";
+            isAiTurnInProgress = false;
+            StateHasChanged();
         }
 
-        StateHasChanged();
+    }
+
+    private async Task HandlePlayAgainAsync()
+    {
+        if (gameManager is null)
+        {
+            return;
+        }
+
+        await gameManager.StartNewGameAsync(GameSession.PlayerName);
+
+        for (int i = 0; i < gameManager.CurrentGame.Players.Count; i++)
+        {
+            displayedWinnings[i] =
+                gameManager.CurrentGame.Players[i].CurrentWinnings;
+        }
+
+        puzzleDisplayText = gameManager.GetPuzzleDisplay();
+        spinnerDisplayText = "---";
+        statusMessage = "Your turn. Choose an action.";
+        gameOverResultMessage = string.Empty;
+        isSolveMode = false;
+        showGameOver = false;
     }
 }

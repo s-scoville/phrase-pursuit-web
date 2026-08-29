@@ -71,6 +71,8 @@
                 return;
             }
 
+            await StatisticsManager.LoadStatisticsAsync();
+
             PuzzleManager puzzleManager =
                 new PuzzleManager(puzzles, StorageService);
 
@@ -87,6 +89,7 @@
             await gameManager.StartNewGameAsync(playerName);
 
             GameSession.CurrentGame = gameManager;
+            GameSession.PlayerName = playerName;
 
             Navigation.NavigateTo("/game");
         }
