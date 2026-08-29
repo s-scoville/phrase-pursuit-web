@@ -24,19 +24,19 @@
         <div class="players-section">
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[0].Name"
-                CurrentWinnings="@gameManager.CurrentGame.Players[0].CurrentWinnings"
+                CurrentWinnings="@displayedWinnings[0]"
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 0" />
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[1].Name"
-                CurrentWinnings="@gameManager.CurrentGame.Players[1].CurrentWinnings"
+                CurrentWinnings="@displayedWinnings[1]"
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 1" />
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[2].Name"
-                CurrentWinnings="@gameManager.CurrentGame.Players[2].CurrentWinnings"
+                CurrentWinnings="@displayedWinnings[2]"
                 IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 2" />
         </div>
 
-        @if (gameManager.CurrentGame.IsGameOver)
+        @if (showGameOver)
         {
             <div class="game-over-section">
                 <GameOverPanel 
@@ -107,6 +107,8 @@
     private bool isSolveMode = false;
     private string gameOverResultMessage = string.Empty;
     private bool isAiTurnInProgress = false;
+    private int[] displayedWinnings = new int[3];
+    private bool showGameOver = false;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -134,6 +136,12 @@
 
         gameManager = GameSession.CurrentGame;
         puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+        for (int i = 0; i < gameManager.CurrentGame.Players.Count; i++)
+        {
+            displayedWinnings[i] =
+                gameManager.CurrentGame.Players[i].CurrentWinnings;
+        }
     }
 
     private async Task HandleLetterSelectedAsync(char letter)
@@ -148,10 +156,14 @@
         if (gameManager.CurrentGame.CurrentPhase == TurnPhase.WaitingForConsonant)
         {
             result = await gameManager.GuessConsonantAsync(letter);
+            displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
         }
         else if (gameManager.CurrentGame.CurrentPhase == TurnPhase.WaitingForVowel)
         {
             result = await gameManager.GuessVowelAsync(letter);
+            displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
         }
         else
         {
@@ -189,6 +201,8 @@
             gameOverResultMessage =
                 $"You completed the puzzle!\nYou won {gameManager.CurrentGame.Players[0].CurrentWinnings:C0}!";
             puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+            showGameOver = true;
             return;
         }
 
@@ -227,6 +241,9 @@
                 ? "You landed on BANKRUPT."
                 : "You landed on LOSE TURN.";
 
+            displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
+
             await RunAiTurnsAsync();
         }
     }
@@ -253,6 +270,9 @@
         SolveResult result =
             await gameManager.SolvePuzzleAsync(solution);
 
+        displayedWinnings[0] =
+                gameManager.CurrentGame.Players[0].CurrentWinnings;
+
         isSolveMode = false;
 
         if (result.WasCorrect)
@@ -261,6 +281,8 @@
             gameOverResultMessage =
                 $"You solved the puzzle!\nYou won {gameManager.CurrentGame.Players[0].CurrentWinnings:C0}!";
             puzzleDisplayText = gameManager.GetPuzzleDisplay();
+
+            showGameOver = true;
         }
         else
         {
@@ -285,7 +307,11 @@
             while (!gameManager.CurrentGame.IsGameOver &&
                    gameManager.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Computer)
             {
-                Player aiPlayer = gameManager.CurrentGame.CurrentPlayer;
+                int aiPlayerIndex =
+                    gameManager.CurrentGame.CurrentPlayerIndex;
+
+                Player aiPlayer =
+                    gameManager.CurrentGame.CurrentPlayer;
 
                 int actionThinkingTime = gameManager.GetAiThinkingTime();
                 int guessThinkingTime = gameManager.GetAiThinkingTime();
@@ -335,6 +361,12 @@
                                 _ => $"{aiPlayer.Name} finished spinning."
                             };
 
+                            if (result.SpinResult.Outcome == SpinOutcome.Bankrupt)
+                            {
+                                displayedWinnings[aiPlayerIndex] =
+                                    aiPlayer.CurrentWinnings;
+                            }
+
                             StateHasChanged();
                             await Task.Delay(1200);
                         }
@@ -361,7 +393,6 @@
                             }
 
                             puzzleDisplayText = gameManager.GetPuzzleDisplay();
-                            StateHasChanged();
 
                             if (guessResult.WasCorrect)
                             {
@@ -386,8 +417,17 @@
                                     $"There are no {guessResult.GuessedLetter}'s.";
                             }
 
+                            displayedWinnings[aiPlayerIndex] =
+                                aiPlayer.CurrentWinnings;
+
                             StateHasChanged();
                             await Task.Delay(1000);
+
+                            if (guessResult.PuzzleCompleted)
+                            {
+                                showGameOver = true;
+                                StateHasChanged();
+                            }
                         }
 
                         break;
@@ -420,7 +460,6 @@
                             }
 
                             puzzleDisplayText = gameManager.GetPuzzleDisplay();
-                            StateHasChanged();
 
                             statusMessage = guessResult.WasCorrect
                                 ? $"There {(guessResult.Occurrences == 1 ? "is" : "are")} " +
@@ -428,8 +467,17 @@
                                   $"{(guessResult.Occurrences == 1 ? "." : "'s.")}"
                                 : $"There are no {guessResult.GuessedLetter}'s.";
 
+                            displayedWinnings[aiPlayerIndex] =
+                                aiPlayer.CurrentWinnings;
+
                             StateHasChanged();
                             await Task.Delay(1000);
+
+                            if (guessResult.PuzzleCompleted)
+                            {
+                                showGameOver = true;
+                                StateHasChanged();
+                            }
                         }
 
                         break;
@@ -453,9 +501,18 @@
                             {
                                 statusMessage = $"{aiPlayer.Name} failed to solve the puzzle.";
                             }
+                
+                            displayedWinnings[aiPlayerIndex] =
+                                aiPlayer.CurrentWinnings;
 
                             StateHasChanged();
                             await Task.Delay(1000);
+
+                            if (result.SolveResult.WasCorrect)
+                            {
+                                showGameOver = true;
+                                StateHasChanged();
+                            }
                         }
 
                         break;
@@ -490,10 +547,17 @@
 
         await gameManager.StartNewGameAsync(GameSession.PlayerName);
 
+        for (int i = 0; i < gameManager.CurrentGame.Players.Count; i++)
+        {
+            displayedWinnings[i] =
+                gameManager.CurrentGame.Players[i].CurrentWinnings;
+        }
+
         puzzleDisplayText = gameManager.GetPuzzleDisplay();
         spinnerDisplayText = "---";
         statusMessage = "Your turn. Choose an action.";
         gameOverResultMessage = string.Empty;
         isSolveMode = false;
+        showGameOver = false;
     }
 }
