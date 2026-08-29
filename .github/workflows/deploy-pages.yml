@@ -37,6 +37,9 @@ jobs:
       - name: Disable Jekyll
         run: touch release/wwwroot/.nojekyll
 
+      - name: Create SPA fallback
+        run: cp release/wwwroot/index.html release/wwwroot/404.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
