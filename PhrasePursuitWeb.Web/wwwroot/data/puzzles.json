@@ -1,62 +1,2002 @@
 [
   {
     "Id": 1,
-    "Category": "MUSIC",
-    "Phrase": "FAITHFULLY"
+    "Category": "PHRASE",
+    "Phrase": "A BLESSING IN DISGUISE"
   },
   {
     "Id": 2,
-    "Category": "MOVIES",
-    "Phrase": "THE GODFATHER"
+    "Category": "PHRASE",
+    "Phrase": "A BREATH OF FRESH AIR"
   },
   {
     "Id": 3,
-    "Category": "TV SHOWS",
-    "Phrase": "BREAKING BAD"
+    "Category": "PHRASE",
+    "Phrase": "A DIME A DOZEN"
   },
   {
     "Id": 4,
-    "Category": "BOOKS",
-    "Phrase": "TO KILL A MOCKINGBIRD"
+    "Category": "PHRASE",
+    "Phrase": "A FRIEND IN NEED IS A FRIEND INDEED"
   },
   {
     "Id": 5,
-    "Category": "VIDEO GAMES",
-    "Phrase": "SONIC THE HEDGEHOG"
+    "Category": "PHRASE",
+    "Phrase": "A PICTURE IS WORTH A THOUSAND WORDS"
   },
   {
     "Id": 6,
-    "Category": "MUSIC",
-    "Phrase": "DON'T STOP BELIEVIN'"
+    "Category": "PHRASE",
+    "Phrase": "A SIGHT FOR SORE EYES"
   },
   {
     "Id": 7,
-    "Category": "MOVIES",
-    "Phrase": "BACK TO THE FUTURE"
+    "Category": "PHRASE",
+    "Phrase": "A TASTE OF YOUR OWN MEDICINE"
   },
   {
     "Id": 8,
-    "Category": "TV SHOWS",
-    "Phrase": "THE FRESH PRINCE OF BEL-AIR"
+    "Category": "PHRASE",
+    "Phrase": "ACTIONS SPEAK LOUDER THAN WORDS"
   },
   {
     "Id": 9,
-    "Category": "BOOKS",
-    "Phrase": "THE HITCHHIKER'S GUIDE TO THE GALAXY"
+    "Category": "PHRASE",
+    "Phrase": "ALL GOOD THINGS MUST COME TO AN END"
   },
   {
     "Id": 10,
-    "Category": "VIDEO GAMES",
-    "Phrase": "THE LEGEND OF ZELDA"
+    "Category": "PHRASE",
+    "Phrase": "ALL IN A DAY'S WORK"
   },
   {
     "Id": 11,
-    "Category": "PLACES",
-    "Phrase": "NEW YORK CITY"
+    "Category": "PHRASE",
+    "Phrase": "AN APPLE A DAY KEEPS THE DOCTOR AWAY"
   },
   {
     "Id": 12,
-    "Category": "FOOD",
-    "Phrase": "MACARONI AND CHEESE"
+    "Category": "PHRASE",
+    "Phrase": "BACK TO SQUARE ONE"
+  },
+  {
+    "Id": 13,
+    "Category": "PHRASE",
+    "Phrase": "BARKING UP THE WRONG TREE"
+  },
+  {
+    "Id": 14,
+    "Category": "PHRASE",
+    "Phrase": "BEAT AROUND THE BUSH"
+  },
+  {
+    "Id": 15,
+    "Category": "PHRASE",
+    "Phrase": "BETTER LATE THAN NEVER"
+  },
+  {
+    "Id": 16,
+    "Category": "PHRASE",
+    "Phrase": "BITE OFF MORE THAN YOU CAN CHEW"
+  },
+  {
+    "Id": 17,
+    "Category": "PHRASE",
+    "Phrase": "BITE THE BULLET"
+  },
+  {
+    "Id": 18,
+    "Category": "PHRASE",
+    "Phrase": "BREAK A LEG"
+  },
+  {
+    "Id": 19,
+    "Category": "PHRASE",
+    "Phrase": "BURNING THE CANDLE AT BOTH ENDS"
+  },
+  {
+    "Id": 20,
+    "Category": "PHRASE",
+    "Phrase": "CAUGHT BETWEEN A ROCK AND A HARD PLACE"
+  },
+  {
+    "Id": 21,
+    "Category": "PHRASE",
+    "Phrase": "CURIOSITY KILLED THE CAT"
+  },
+  {
+    "Id": 22,
+    "Category": "PHRASE",
+    "Phrase": "DON'T BITE THE HAND THAT FEEDS YOU"
+  },
+  {
+    "Id": 23,
+    "Category": "PHRASE",
+    "Phrase": "DON'T COUNT YOUR CHICKENS BEFORE THEY HATCH"
+  },
+  {
+    "Id": 24,
+    "Category": "PHRASE",
+    "Phrase": "DON'T CRY OVER SPILLED MILK"
+  },
+  {
+    "Id": 25,
+    "Category": "PHRASE",
+    "Phrase": "DON'T JUDGE A BOOK BY ITS COVER"
+  },
+  {
+    "Id": 26,
+    "Category": "PHRASE",
+    "Phrase": "EASIER SAID THAN DONE"
+  },
+  {
+    "Id": 27,
+    "Category": "PHRASE",
+    "Phrase": "EVERY CLOUD HAS A SILVER LINING"
+  },
+  {
+    "Id": 28,
+    "Category": "PHRASE",
+    "Phrase": "GET THE SHOW ON THE ROAD"
+  },
+  {
+    "Id": 29,
+    "Category": "PHRASE",
+    "Phrase": "GET YOUR DUCKS IN A ROW"
+  },
+  {
+    "Id": 30,
+    "Category": "PHRASE",
+    "Phrase": "GO THE EXTRA MILE"
+  },
+  {
+    "Id": 31,
+    "Category": "PHRASE",
+    "Phrase": "HANG IN THERE"
+  },
+  {
+    "Id": 32,
+    "Category": "PHRASE",
+    "Phrase": "HIT THE NAIL ON THE HEAD"
+  },
+  {
+    "Id": 33,
+    "Category": "PHRASE",
+    "Phrase": "IF IT AIN'T BROKE, DON'T FIX IT"
+  },
+  {
+    "Id": 34,
+    "Category": "PHRASE",
+    "Phrase": "IT TAKES TWO TO TANGO"
+  },
+  {
+    "Id": 35,
+    "Category": "PHRASE",
+    "Phrase": "KEEP YOUR EYES ON THE PRIZE"
+  },
+  {
+    "Id": 36,
+    "Category": "PHRASE",
+    "Phrase": "KILL TWO BIRDS WITH ONE STONE"
+  },
+  {
+    "Id": 37,
+    "Category": "PHRASE",
+    "Phrase": "LET SLEEPING DOGS LIE"
+  },
+  {
+    "Id": 38,
+    "Category": "PHRASE",
+    "Phrase": "LET THE CAT OUT OF THE BAG"
+  },
+  {
+    "Id": 39,
+    "Category": "PHRASE",
+    "Phrase": "LIKE A NEEDLE IN A HAYSTACK"
+  },
+  {
+    "Id": 40,
+    "Category": "PHRASE",
+    "Phrase": "LOOK BEFORE YOU LEAP"
+  },
+  {
+    "Id": 41,
+    "Category": "PHRASE",
+    "Phrase": "MAKE A LONG STORY SHORT"
+  },
+  {
+    "Id": 42,
+    "Category": "PHRASE",
+    "Phrase": "MISS THE BOAT"
+  },
+  {
+    "Id": 43,
+    "Category": "PHRASE",
+    "Phrase": "NO PAIN, NO GAIN"
+  },
+  {
+    "Id": 44,
+    "Category": "PHRASE",
+    "Phrase": "ONCE IN A BLUE MOON"
+  },
+  {
+    "Id": 45,
+    "Category": "PHRASE",
+    "Phrase": "PRACTICE MAKES PERFECT"
+  },
+  {
+    "Id": 46,
+    "Category": "PHRASE",
+    "Phrase": "PUT ALL YOUR EGGS IN ONE BASKET"
+  },
+  {
+    "Id": 47,
+    "Category": "PHRASE",
+    "Phrase": "READ BETWEEN THE LINES"
+  },
+  {
+    "Id": 48,
+    "Category": "PHRASE",
+    "Phrase": "SPEAK OF THE DEVIL"
+  },
+  {
+    "Id": 49,
+    "Category": "PHRASE",
+    "Phrase": "THE BALL IS IN YOUR COURT"
+  },
+  {
+    "Id": 50,
+    "Category": "PHRASE",
+    "Phrase": "THE BEST OF BOTH WORLDS"
+  },
+  {
+    "Id": 51,
+    "Category": "PHRASE",
+    "Phrase": "THE EARLY BIRD GETS THE WORM"
+  },
+  {
+    "Id": 52,
+    "Category": "PHRASE",
+    "Phrase": "THE GRASS IS ALWAYS GREENER ON THE OTHER SIDE"
+  },
+  {
+    "Id": 53,
+    "Category": "PHRASE",
+    "Phrase": "THE WHOLE NINE YARDS"
+  },
+  {
+    "Id": 54,
+    "Category": "PHRASE",
+    "Phrase": "THERE'S NO PLACE LIKE HOME"
+  },
+  {
+    "Id": 55,
+    "Category": "PHRASE",
+    "Phrase": "THROW CAUTION TO THE WIND"
+  },
+  {
+    "Id": 56,
+    "Category": "PHRASE",
+    "Phrase": "TIME FLIES WHEN YOU'RE HAVING FUN"
+  },
+  {
+    "Id": 57,
+    "Category": "PHRASE",
+    "Phrase": "TWO HEADS ARE BETTER THAN ONE"
+  },
+  {
+    "Id": 58,
+    "Category": "PHRASE",
+    "Phrase": "WHEN IT RAINS, IT POURS"
+  },
+  {
+    "Id": 59,
+    "Category": "PHRASE",
+    "Phrase": "YOU CAN'T HAVE YOUR CAKE AND EAT IT TOO"
+  },
+  {
+    "Id": 60,
+    "Category": "PHRASE",
+    "Phrase": "YOU CAN'T TEACH AN OLD DOG NEW TRICKS"
+  },
+  {
+    "Id": 61,
+    "Category": "FOOD & DRINK",
+    "Phrase": "APPLE PIE WITH ICE CREAM"
+  },
+  {
+    "Id": 62,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BACON AND EGGS"
+  },
+  {
+    "Id": 63,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BAKED MACARONI AND CHEESE"
+  },
+  {
+    "Id": 64,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BANANA CREAM PIE"
+  },
+  {
+    "Id": 65,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BARBECUE PULLED PORK"
+  },
+  {
+    "Id": 66,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BEEF AND BROCCOLI"
+  },
+  {
+    "Id": 67,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BISCUITS AND GRAVY"
+  },
+  {
+    "Id": 68,
+    "Category": "FOOD & DRINK",
+    "Phrase": "BUFFALO CHICKEN WINGS"
+  },
+  {
+    "Id": 69,
+    "Category": "FOOD & DRINK",
+    "Phrase": "CAESAR SALAD"
+  },
+  {
+    "Id": 70,
+    "Category": "FOOD & DRINK",
+    "Phrase": "CHICKEN AND WAFFLES"
+  },
+  {
+    "Id": 71,
+    "Category": "FOOD & DRINK",
+    "Phrase": "CHICKEN PARMESAN"
+  },
+  {
+    "Id": 72,
+    "Category": "FOOD & DRINK",
+    "Phrase": "CHOCOLATE CHIP COOKIES"
+  },
+  {
+    "Id": 73,
+    "Category": "FOOD & DRINK",
+    "Phrase": "CINNAMON ROLLS"
+  },
+  {
+    "Id": 74,
+    "Category": "FOOD & DRINK",
+    "Phrase": "CLASSIC CHEESEBURGER"
+  },
+  {
+    "Id": 75,
+    "Category": "FOOD & DRINK",
+    "Phrase": "COOKIES AND CREAM ICE CREAM"
+  },
+  {
+    "Id": 76,
+    "Category": "FOOD & DRINK",
+    "Phrase": "COUNTRY FRIED STEAK"
+  },
+  {
+    "Id": 77,
+    "Category": "FOOD & DRINK",
+    "Phrase": "FISH AND CHIPS"
+  },
+  {
+    "Id": 78,
+    "Category": "FOOD & DRINK",
+    "Phrase": "FRENCH ONION SOUP"
+  },
+  {
+    "Id": 79,
+    "Category": "FOOD & DRINK",
+    "Phrase": "FRESH-SQUEEZED LEMONADE"
+  },
+  {
+    "Id": 80,
+    "Category": "FOOD & DRINK",
+    "Phrase": "FRIED CHICKEN"
+  },
+  {
+    "Id": 81,
+    "Category": "FOOD & DRINK",
+    "Phrase": "GRILLED CHEESE AND TOMATO SOUP"
+  },
+  {
+    "Id": 82,
+    "Category": "FOOD & DRINK",
+    "Phrase": "HAWAIIAN PIZZA"
+  },
+  {
+    "Id": 83,
+    "Category": "FOOD & DRINK",
+    "Phrase": "HOT FUDGE SUNDAE"
+  },
+  {
+    "Id": 84,
+    "Category": "FOOD & DRINK",
+    "Phrase": "JALAPENO POPPERS"
+  },
+  {
+    "Id": 85,
+    "Category": "FOOD & DRINK",
+    "Phrase": "KEY LIME PIE"
+  },
+  {
+    "Id": 86,
+    "Category": "FOOD & DRINK",
+    "Phrase": "LOADED BAKED POTATO"
+  },
+  {
+    "Id": 87,
+    "Category": "FOOD & DRINK",
+    "Phrase": "MEATBALL SUB"
+  },
+  {
+    "Id": 88,
+    "Category": "FOOD & DRINK",
+    "Phrase": "NEW YORK-STYLE CHEESECAKE"
+  },
+  {
+    "Id": 89,
+    "Category": "FOOD & DRINK",
+    "Phrase": "PEANUT BUTTER AND JELLY"
+  },
+  {
+    "Id": 90,
+    "Category": "FOOD & DRINK",
+    "Phrase": "PEPPERONI PIZZA"
+  },
+  {
+    "Id": 91,
+    "Category": "FOOD & DRINK",
+    "Phrase": "PHILLY CHEESESTEAK"
+  },
+  {
+    "Id": 92,
+    "Category": "FOOD & DRINK",
+    "Phrase": "PUMPKIN SPICE LATTE"
+  },
+  {
+    "Id": 93,
+    "Category": "FOOD & DRINK",
+    "Phrase": "SHRIMP AND GRITS"
+  },
+  {
+    "Id": 94,
+    "Category": "FOOD & DRINK",
+    "Phrase": "SPAGHETTI AND MEATBALLS"
+  },
+  {
+    "Id": 95,
+    "Category": "FOOD & DRINK",
+    "Phrase": "STRAWBERRY SHORTCAKE"
+  },
+  {
+    "Id": 96,
+    "Category": "FOOD & DRINK",
+    "Phrase": "SWEET AND SOUR CHICKEN"
+  },
+  {
+    "Id": 97,
+    "Category": "FOOD & DRINK",
+    "Phrase": "TACOS AL PASTOR"
+  },
+  {
+    "Id": 98,
+    "Category": "FOOD & DRINK",
+    "Phrase": "TEXAS-STYLE BARBECUE"
+  },
+  {
+    "Id": 99,
+    "Category": "FOOD & DRINK",
+    "Phrase": "VANILLA MILKSHAKE"
+  },
+  {
+    "Id": 100,
+    "Category": "FOOD & DRINK",
+    "Phrase": "WARM APPLE CIDER"
+  },
+  {
+    "Id": 101,
+    "Category": "PLACE",
+    "Phrase": "ALCATRAZ ISLAND"
+  },
+  {
+    "Id": 102,
+    "Category": "PLACE",
+    "Phrase": "AMSTERDAM, NETHERLANDS"
+  },
+  {
+    "Id": 103,
+    "Category": "PLACE",
+    "Phrase": "ANTARCTICA"
+  },
+  {
+    "Id": 104,
+    "Category": "PLACE",
+    "Phrase": "ATLANTIC CITY, NEW JERSEY"
+  },
+  {
+    "Id": 105,
+    "Category": "PLACE",
+    "Phrase": "BIG BEN"
+  },
+  {
+    "Id": 106,
+    "Category": "PLACE",
+    "Phrase": "BOURBON STREET"
+  },
+  {
+    "Id": 107,
+    "Category": "PLACE",
+    "Phrase": "BUCKINGHAM PALACE"
+  },
+  {
+    "Id": 108,
+    "Category": "PLACE",
+    "Phrase": "CENTRAL PARK"
+  },
+  {
+    "Id": 109,
+    "Category": "PLACE",
+    "Phrase": "CHICAGO, ILLINOIS"
+  },
+  {
+    "Id": 110,
+    "Category": "PLACE",
+    "Phrase": "DISNEYLAND"
+  },
+  {
+    "Id": 111,
+    "Category": "PLACE",
+    "Phrase": "EIFFEL TOWER"
+  },
+  {
+    "Id": 112,
+    "Category": "PLACE",
+    "Phrase": "EMPIRE STATE BUILDING"
+  },
+  {
+    "Id": 113,
+    "Category": "PLACE",
+    "Phrase": "GATEWAY ARCH"
+  },
+  {
+    "Id": 114,
+    "Category": "PLACE",
+    "Phrase": "GOLDEN GATE BRIDGE"
+  },
+  {
+    "Id": 115,
+    "Category": "PLACE",
+    "Phrase": "GRAND CENTRAL TERMINAL"
+  },
+  {
+    "Id": 116,
+    "Category": "PLACE",
+    "Phrase": "GREAT BARRIER REEF"
+  },
+  {
+    "Id": 117,
+    "Category": "PLACE",
+    "Phrase": "HOLLYWOOD BOULEVARD"
+  },
+  {
+    "Id": 118,
+    "Category": "PLACE",
+    "Phrase": "HONOLULU, HAWAII"
+  },
+  {
+    "Id": 119,
+    "Category": "PLACE",
+    "Phrase": "LAS VEGAS, NEVADA"
+  },
+  {
+    "Id": 120,
+    "Category": "PLACE",
+    "Phrase": "LONDON, ENGLAND"
+  },
+  {
+    "Id": 121,
+    "Category": "PLACE",
+    "Phrase": "MACHU PICCHU"
+  },
+  {
+    "Id": 122,
+    "Category": "PLACE",
+    "Phrase": "MADISON SQUARE GARDEN"
+  },
+  {
+    "Id": 123,
+    "Category": "PLACE",
+    "Phrase": "MOUNT EVEREST"
+  },
+  {
+    "Id": 124,
+    "Category": "PLACE",
+    "Phrase": "MOUNT RUSHMORE"
+  },
+  {
+    "Id": 125,
+    "Category": "PLACE",
+    "Phrase": "NASHVILLE, TENNESSEE"
+  },
+  {
+    "Id": 126,
+    "Category": "PLACE",
+    "Phrase": "NEW ORLEANS, LOUISIANA"
+  },
+  {
+    "Id": 127,
+    "Category": "PLACE",
+    "Phrase": "NIAGARA FALLS"
+  },
+  {
+    "Id": 128,
+    "Category": "PLACE",
+    "Phrase": "PARIS, FRANCE"
+  },
+  {
+    "Id": 129,
+    "Category": "PLACE",
+    "Phrase": "PIKES PEAK"
+  },
+  {
+    "Id": 130,
+    "Category": "PLACE",
+    "Phrase": "ROME, ITALY"
+  },
+  {
+    "Id": 131,
+    "Category": "PLACE",
+    "Phrase": "ROUTE 66"
+  },
+  {
+    "Id": 132,
+    "Category": "PLACE",
+    "Phrase": "STATUE OF LIBERTY"
+  },
+  {
+    "Id": 133,
+    "Category": "PLACE",
+    "Phrase": "SYDNEY OPERA HOUSE"
+  },
+  {
+    "Id": 134,
+    "Category": "PLACE",
+    "Phrase": "THE GRAND CANYON"
+  },
+  {
+    "Id": 135,
+    "Category": "PLACE",
+    "Phrase": "THE GREAT WALL OF CHINA"
+  },
+  {
+    "Id": 136,
+    "Category": "PLACE",
+    "Phrase": "TIMES SQUARE"
+  },
+  {
+    "Id": 137,
+    "Category": "PLACE",
+    "Phrase": "TOKYO, JAPAN"
+  },
+  {
+    "Id": 138,
+    "Category": "PLACE",
+    "Phrase": "WAIKIKI BEACH"
+  },
+  {
+    "Id": 139,
+    "Category": "PLACE",
+    "Phrase": "YELLOWSTONE NATIONAL PARK"
+  },
+  {
+    "Id": 140,
+    "Category": "PLACE",
+    "Phrase": "YOSEMITE NATIONAL PARK"
+  },
+  {
+    "Id": 141,
+    "Category": "SONG TITLE",
+    "Phrase": "AIN'T NO MOUNTAIN HIGH ENOUGH"
+  },
+  {
+    "Id": 142,
+    "Category": "SONG TITLE",
+    "Phrase": "ANOTHER BRICK IN THE WALL"
+  },
+  {
+    "Id": 143,
+    "Category": "SONG TITLE",
+    "Phrase": "BACK IN BLACK"
+  },
+  {
+    "Id": 144,
+    "Category": "SONG TITLE",
+    "Phrase": "BAD MOON RISING"
+  },
+  {
+    "Id": 145,
+    "Category": "SONG TITLE",
+    "Phrase": "BILLIE JEAN"
+  },
+  {
+    "Id": 146,
+    "Category": "SONG TITLE",
+    "Phrase": "BOHEMIAN RHAPSODY"
+  },
+  {
+    "Id": 147,
+    "Category": "SONG TITLE",
+    "Phrase": "BORN IN THE U.S.A."
+  },
+  {
+    "Id": 148,
+    "Category": "SONG TITLE",
+    "Phrase": "BREAKING THE LAW"
+  },
+  {
+    "Id": 149,
+    "Category": "SONG TITLE",
+    "Phrase": "CARRY ON WAYWARD SON"
+  },
+  {
+    "Id": 150,
+    "Category": "SONG TITLE",
+    "Phrase": "COME AS YOU ARE"
+  },
+  {
+    "Id": 151,
+    "Category": "SONG TITLE",
+    "Phrase": "COUNTRY ROADS, TAKE ME HOME"
+  },
+  {
+    "Id": 152,
+    "Category": "SONG TITLE",
+    "Phrase": "CRAZY LITTLE THING CALLED LOVE"
+  },
+  {
+    "Id": 153,
+    "Category": "SONG TITLE",
+    "Phrase": "DON'T FEAR THE REAPER"
+  },
+  {
+    "Id": 154,
+    "Category": "SONG TITLE",
+    "Phrase": "DON'T STOP BELIEVIN'"
+  },
+  {
+    "Id": 155,
+    "Category": "SONG TITLE",
+    "Phrase": "DREAM ON"
+  },
+  {
+    "Id": 156,
+    "Category": "SONG TITLE",
+    "Phrase": "ENTER SANDMAN"
+  },
+  {
+    "Id": 157,
+    "Category": "SONG TITLE",
+    "Phrase": "EVERY BREATH YOU TAKE"
+  },
+  {
+    "Id": 158,
+    "Category": "SONG TITLE",
+    "Phrase": "FRIENDS IN LOW PLACES"
+  },
+  {
+    "Id": 159,
+    "Category": "SONG TITLE",
+    "Phrase": "GIMME THREE STEPS"
+  },
+  {
+    "Id": 160,
+    "Category": "SONG TITLE",
+    "Phrase": "GIVE ME ONE REASON"
+  },
+  {
+    "Id": 161,
+    "Category": "SONG TITLE",
+    "Phrase": "HERE I GO AGAIN"
+  },
+  {
+    "Id": 162,
+    "Category": "SONG TITLE",
+    "Phrase": "HIGHWAY TO HELL"
+  },
+  {
+    "Id": 163,
+    "Category": "SONG TITLE",
+    "Phrase": "HIT ME WITH YOUR BEST SHOT"
+  },
+  {
+    "Id": 164,
+    "Category": "SONG TITLE",
+    "Phrase": "HOTEL CALIFORNIA"
+  },
+  {
+    "Id": 165,
+    "Category": "SONG TITLE",
+    "Phrase": "HOUSE OF THE RISING SUN"
+  },
+  {
+    "Id": 166,
+    "Category": "SONG TITLE",
+    "Phrase": "I DON'T WANT TO MISS A THING"
+  },
+  {
+    "Id": 167,
+    "Category": "SONG TITLE",
+    "Phrase": "I LOVE ROCK 'N' ROLL"
+  },
+  {
+    "Id": 168,
+    "Category": "SONG TITLE",
+    "Phrase": "I WALK THE LINE"
+  },
+  {
+    "Id": 169,
+    "Category": "SONG TITLE",
+    "Phrase": "IF I COULD TURN BACK TIME"
+  },
+  {
+    "Id": 170,
+    "Category": "SONG TITLE",
+    "Phrase": "JEREMY"
+  },
+  {
+    "Id": 171,
+    "Category": "SONG TITLE",
+    "Phrase": "JOLENE"
+  },
+  {
+    "Id": 172,
+    "Category": "SONG TITLE",
+    "Phrase": "KNOCKIN' ON HEAVEN'S DOOR"
+  },
+  {
+    "Id": 173,
+    "Category": "SONG TITLE",
+    "Phrase": "LEARN TO FLY"
+  },
+  {
+    "Id": 174,
+    "Category": "SONG TITLE",
+    "Phrase": "LIVIN' ON A PRAYER"
+  },
+  {
+    "Id": 175,
+    "Category": "SONG TITLE",
+    "Phrase": "MAN IN THE BOX"
+  },
+  {
+    "Id": 176,
+    "Category": "SONG TITLE",
+    "Phrase": "NOTHIN' BUT A GOOD TIME"
+  },
+  {
+    "Id": 177,
+    "Category": "SONG TITLE",
+    "Phrase": "PARADISE CITY"
+  },
+  {
+    "Id": 178,
+    "Category": "SONG TITLE",
+    "Phrase": "POUR SOME SUGAR ON ME"
+  },
+  {
+    "Id": 179,
+    "Category": "SONG TITLE",
+    "Phrase": "PURPLE HAZE"
+  },
+  {
+    "Id": 180,
+    "Category": "SONG TITLE",
+    "Phrase": "ROCK AND ROLL ALL NITE"
+  },
+  {
+    "Id": 181,
+    "Category": "SONG TITLE",
+    "Phrase": "SIMPLE MAN"
+  },
+  {
+    "Id": 182,
+    "Category": "SONG TITLE",
+    "Phrase": "SMELLS LIKE TEEN SPIRIT"
+  },
+  {
+    "Id": 183,
+    "Category": "SONG TITLE",
+    "Phrase": "SOMEBODY TO LOVE"
+  },
+  {
+    "Id": 184,
+    "Category": "SONG TITLE",
+    "Phrase": "SOUND OF MADNESS"
+  },
+  {
+    "Id": 185,
+    "Category": "SONG TITLE",
+    "Phrase": "STAIRWAY TO HEAVEN"
+  },
+  {
+    "Id": 186,
+    "Category": "SONG TITLE",
+    "Phrase": "SWEET CHILD O' MINE"
+  },
+  {
+    "Id": 187,
+    "Category": "SONG TITLE",
+    "Phrase": "SWEET HOME ALABAMA"
+  },
+  {
+    "Id": 188,
+    "Category": "SONG TITLE",
+    "Phrase": "TAKE IT EASY"
+  },
+  {
+    "Id": 189,
+    "Category": "SONG TITLE",
+    "Phrase": "THE DEVIL WENT DOWN TO GEORGIA"
+  },
+  {
+    "Id": 190,
+    "Category": "SONG TITLE",
+    "Phrase": "THE SOUND OF SILENCE"
+  },
+  {
+    "Id": 191,
+    "Category": "SONG TITLE",
+    "Phrase": "THROUGH THE FIRE AND FLAMES"
+  },
+  {
+    "Id": 192,
+    "Category": "SONG TITLE",
+    "Phrase": "THUNDERSTRUCK"
+  },
+  {
+    "Id": 193,
+    "Category": "SONG TITLE",
+    "Phrase": "UNDER THE BRIDGE"
+  },
+  {
+    "Id": 194,
+    "Category": "SONG TITLE",
+    "Phrase": "WALK THIS WAY"
+  },
+  {
+    "Id": 195,
+    "Category": "SONG TITLE",
+    "Phrase": "WANTED DEAD OR ALIVE"
+  },
+  {
+    "Id": 196,
+    "Category": "SONG TITLE",
+    "Phrase": "WELCOME TO THE JUNGLE"
+  },
+  {
+    "Id": 197,
+    "Category": "SONG TITLE",
+    "Phrase": "WHAT I'VE DONE"
+  },
+  {
+    "Id": 198,
+    "Category": "SONG TITLE",
+    "Phrase": "WHEN DOVES CRY"
+  },
+  {
+    "Id": 199,
+    "Category": "SONG TITLE",
+    "Phrase": "WHISKEY GLASSES"
+  },
+  {
+    "Id": 200,
+    "Category": "SONG TITLE",
+    "Phrase": "YOU GIVE LOVE A BAD NAME"
+  },
+  {
+    "Id": 201,
+    "Category": "BOOK",
+    "Phrase": "A CHRISTMAS CAROL"
+  },
+  {
+    "Id": 202,
+    "Category": "BOOK",
+    "Phrase": "A TALE OF TWO CITIES"
+  },
+  {
+    "Id": 203,
+    "Category": "BOOK",
+    "Phrase": "ALICE'S ADVENTURES IN WONDERLAND"
+  },
+  {
+    "Id": 204,
+    "Category": "BOOK",
+    "Phrase": "ANIMAL FARM"
+  },
+  {
+    "Id": 205,
+    "Category": "BOOK",
+    "Phrase": "BRAVE NEW WORLD"
+  },
+  {
+    "Id": 206,
+    "Category": "BOOK",
+    "Phrase": "CHARLIE AND THE CHOCOLATE FACTORY"
+  },
+  {
+    "Id": 207,
+    "Category": "BOOK",
+    "Phrase": "CHARLOTTE'S WEB"
+  },
+  {
+    "Id": 208,
+    "Category": "BOOK",
+    "Phrase": "CRIME AND PUNISHMENT"
+  },
+  {
+    "Id": 209,
+    "Category": "BOOK",
+    "Phrase": "DUNE"
+  },
+  {
+    "Id": 210,
+    "Category": "BOOK",
+    "Phrase": "FAHRENHEIT 451"
+  },
+  {
+    "Id": 211,
+    "Category": "BOOK",
+    "Phrase": "FOR WHOM THE BELL TOLLS"
+  },
+  {
+    "Id": 212,
+    "Category": "BOOK",
+    "Phrase": "FRANKENSTEIN"
+  },
+  {
+    "Id": 213,
+    "Category": "BOOK",
+    "Phrase": "GONE WITH THE WIND"
+  },
+  {
+    "Id": 214,
+    "Category": "BOOK",
+    "Phrase": "GREAT EXPECTATIONS"
+  },
+  {
+    "Id": 215,
+    "Category": "BOOK",
+    "Phrase": "HARRY POTTER AND THE SORCERER'S STONE"
+  },
+  {
+    "Id": 216,
+    "Category": "BOOK",
+    "Phrase": "JAMES AND THE GIANT PEACH"
+  },
+  {
+    "Id": 217,
+    "Category": "BOOK",
+    "Phrase": "JURASSIC PARK"
+  },
+  {
+    "Id": 218,
+    "Category": "BOOK",
+    "Phrase": "LITTLE WOMEN"
+  },
+  {
+    "Id": 219,
+    "Category": "BOOK",
+    "Phrase": "MOBY-DICK"
+  },
+  {
+    "Id": 220,
+    "Category": "BOOK",
+    "Phrase": "OF MICE AND MEN"
+  },
+  {
+    "Id": 221,
+    "Category": "BOOK",
+    "Phrase": "ONE FLEW OVER THE CUCKOO'S NEST"
+  },
+  {
+    "Id": 222,
+    "Category": "BOOK",
+    "Phrase": "PRIDE AND PREJUDICE"
+  },
+  {
+    "Id": 223,
+    "Category": "BOOK",
+    "Phrase": "THE ADVENTURES OF HUCKLEBERRY FINN"
+  },
+  {
+    "Id": 224,
+    "Category": "BOOK",
+    "Phrase": "THE CATCHER IN THE RYE"
+  },
+  {
+    "Id": 225,
+    "Category": "BOOK",
+    "Phrase": "THE CAT IN THE HAT"
+  },
+  {
+    "Id": 226,
+    "Category": "BOOK",
+    "Phrase": "THE CHRONICLES OF NARNIA"
+  },
+  {
+    "Id": 227,
+    "Category": "BOOK",
+    "Phrase": "THE COLOR PURPLE"
+  },
+  {
+    "Id": 228,
+    "Category": "BOOK",
+    "Phrase": "THE GRAPES OF WRATH"
+  },
+  {
+    "Id": 229,
+    "Category": "BOOK",
+    "Phrase": "THE GREAT GATSBY"
+  },
+  {
+    "Id": 230,
+    "Category": "BOOK",
+    "Phrase": "THE HITCHHIKER'S GUIDE TO THE GALAXY"
+  },
+  {
+    "Id": 231,
+    "Category": "BOOK",
+    "Phrase": "THE HOBBIT"
+  },
+  {
+    "Id": 232,
+    "Category": "BOOK",
+    "Phrase": "THE LORD OF THE RINGS"
+  },
+  {
+    "Id": 233,
+    "Category": "BOOK",
+    "Phrase": "THE SHINING"
+  },
+  {
+    "Id": 234,
+    "Category": "BOOK",
+    "Phrase": "TO KILL A MOCKINGBIRD"
+  },
+  {
+    "Id": 235,
+    "Category": "BOOK",
+    "Phrase": "WHERE THE WILD THINGS ARE"
+  },
+  {
+    "Id": 236,
+    "Category": "TELEVISION",
+    "Phrase": "AMERICAN DAD!"
+  },
+  {
+    "Id": 237,
+    "Category": "TELEVISION",
+    "Phrase": "AMERICAN HORROR STORY"
+  },
+  {
+    "Id": 238,
+    "Category": "TELEVISION",
+    "Phrase": "BETTER CALL SAUL"
+  },
+  {
+    "Id": 239,
+    "Category": "TELEVISION",
+    "Phrase": "BOB'S BURGERS"
+  },
+  {
+    "Id": 240,
+    "Category": "TELEVISION",
+    "Phrase": "BREAKING BAD"
+  },
+  {
+    "Id": 241,
+    "Category": "TELEVISION",
+    "Phrase": "BUFFY THE VAMPIRE SLAYER"
+  },
+  {
+    "Id": 242,
+    "Category": "TELEVISION",
+    "Phrase": "CRIMINAL MINDS"
+  },
+  {
+    "Id": 243,
+    "Category": "TELEVISION",
+    "Phrase": "DEXTER"
+  },
+  {
+    "Id": 244,
+    "Category": "TELEVISION",
+    "Phrase": "FAMILY GUY"
+  },
+  {
+    "Id": 245,
+    "Category": "TELEVISION",
+    "Phrase": "FRASIER"
+  },
+  {
+    "Id": 246,
+    "Category": "TELEVISION",
+    "Phrase": "FRIENDS"
+  },
+  {
+    "Id": 247,
+    "Category": "TELEVISION",
+    "Phrase": "GAME OF THRONES"
+  },
+  {
+    "Id": 248,
+    "Category": "TELEVISION",
+    "Phrase": "GREY'S ANATOMY"
+  },
+  {
+    "Id": 249,
+    "Category": "TELEVISION",
+    "Phrase": "HOW I MET YOUR MOTHER"
+  },
+  {
+    "Id": 250,
+    "Category": "TELEVISION",
+    "Phrase": "IT'S ALWAYS SUNNY IN PHILADELPHIA"
+  },
+  {
+    "Id": 251,
+    "Category": "TELEVISION",
+    "Phrase": "LAW AND ORDER: SPECIAL VICTIMS UNIT"
+  },
+  {
+    "Id": 252,
+    "Category": "TELEVISION",
+    "Phrase": "MALCOLM IN THE MIDDLE"
+  },
+  {
+    "Id": 253,
+    "Category": "TELEVISION",
+    "Phrase": "MARRIED... WITH CHILDREN"
+  },
+  {
+    "Id": 254,
+    "Category": "TELEVISION",
+    "Phrase": "MODERN FAMILY"
+  },
+  {
+    "Id": 255,
+    "Category": "TELEVISION",
+    "Phrase": "NCIS"
+  },
+  {
+    "Id": 256,
+    "Category": "TELEVISION",
+    "Phrase": "PARKS AND RECREATION"
+  },
+  {
+    "Id": 257,
+    "Category": "TELEVISION",
+    "Phrase": "PEAKY BLINDERS"
+  },
+  {
+    "Id": 258,
+    "Category": "TELEVISION",
+    "Phrase": "RICK AND MORTY"
+  },
+  {
+    "Id": 259,
+    "Category": "TELEVISION",
+    "Phrase": "SAVED BY THE BELL"
+  },
+  {
+    "Id": 260,
+    "Category": "TELEVISION",
+    "Phrase": "SCHITT'S CREEK"
+  },
+  {
+    "Id": 261,
+    "Category": "TELEVISION",
+    "Phrase": "SEINFELD"
+  },
+  {
+    "Id": 262,
+    "Category": "TELEVISION",
+    "Phrase": "SONS OF ANARCHY"
+  },
+  {
+    "Id": 263,
+    "Category": "TELEVISION",
+    "Phrase": "SOUTH PARK"
+  },
+  {
+    "Id": 264,
+    "Category": "TELEVISION",
+    "Phrase": "STAR TREK: THE NEXT GENERATION"
+  },
+  {
+    "Id": 265,
+    "Category": "TELEVISION",
+    "Phrase": "STRANGER THINGS"
+  },
+  {
+    "Id": 266,
+    "Category": "TELEVISION",
+    "Phrase": "THE BIG BANG THEORY"
+  },
+  {
+    "Id": 267,
+    "Category": "TELEVISION",
+    "Phrase": "THE FRESH PRINCE OF BEL-AIR"
+  },
+  {
+    "Id": 268,
+    "Category": "TELEVISION",
+    "Phrase": "THE MANDALORIAN"
+  },
+  {
+    "Id": 269,
+    "Category": "TELEVISION",
+    "Phrase": "THE OFFICE"
+  },
+  {
+    "Id": 270,
+    "Category": "TELEVISION",
+    "Phrase": "THE SIMPSONS"
+  },
+  {
+    "Id": 271,
+    "Category": "TELEVISION",
+    "Phrase": "THE SOPRANOS"
+  },
+  {
+    "Id": 272,
+    "Category": "TELEVISION",
+    "Phrase": "THE WALKING DEAD"
+  },
+  {
+    "Id": 273,
+    "Category": "TELEVISION",
+    "Phrase": "THAT '70S SHOW"
+  },
+  {
+    "Id": 274,
+    "Category": "TELEVISION",
+    "Phrase": "TWO AND A HALF MEN"
+  },
+  {
+    "Id": 275,
+    "Category": "TELEVISION",
+    "Phrase": "YELLOWSTONE"
+  },
+  {
+    "Id": 276,
+    "Category": "MOVIE",
+    "Phrase": "A NIGHTMARE ON ELM STREET"
+  },
+  {
+    "Id": 277,
+    "Category": "MOVIE",
+    "Phrase": "ACE VENTURA: PET DETECTIVE"
+  },
+  {
+    "Id": 278,
+    "Category": "MOVIE",
+    "Phrase": "BACK TO THE FUTURE"
+  },
+  {
+    "Id": 279,
+    "Category": "MOVIE",
+    "Phrase": "BEETLEJUICE"
+  },
+  {
+    "Id": 280,
+    "Category": "MOVIE",
+    "Phrase": "BEVERLY HILLS COP"
+  },
+  {
+    "Id": 281,
+    "Category": "MOVIE",
+    "Phrase": "BRAVEHEART"
+  },
+  {
+    "Id": 282,
+    "Category": "MOVIE",
+    "Phrase": "DIE HARD"
+  },
+  {
+    "Id": 283,
+    "Category": "MOVIE",
+    "Phrase": "DUMB AND DUMBER"
+  },
+  {
+    "Id": 284,
+    "Category": "MOVIE",
+    "Phrase": "EDWARD SCISSORHANDS"
+  },
+  {
+    "Id": 285,
+    "Category": "MOVIE",
+    "Phrase": "FERRIS BUELLER'S DAY OFF"
+  },
+  {
+    "Id": 286,
+    "Category": "MOVIE",
+    "Phrase": "FIELD OF DREAMS"
+  },
+  {
+    "Id": 287,
+    "Category": "MOVIE",
+    "Phrase": "FORREST GUMP"
+  },
+  {
+    "Id": 288,
+    "Category": "MOVIE",
+    "Phrase": "FRIDAY THE 13TH"
+  },
+  {
+    "Id": 289,
+    "Category": "MOVIE",
+    "Phrase": "GHOSTBUSTERS"
+  },
+  {
+    "Id": 290,
+    "Category": "MOVIE",
+    "Phrase": "GOOD WILL HUNTING"
+  },
+  {
+    "Id": 291,
+    "Category": "MOVIE",
+    "Phrase": "GOODFELLAS"
+  },
+  {
+    "Id": 292,
+    "Category": "MOVIE",
+    "Phrase": "GUARDIANS OF THE GALAXY"
+  },
+  {
+    "Id": 293,
+    "Category": "MOVIE",
+    "Phrase": "HOME ALONE"
+  },
+  {
+    "Id": 294,
+    "Category": "MOVIE",
+    "Phrase": "INDIANA JONES AND THE LAST CRUSADE"
+  },
+  {
+    "Id": 295,
+    "Category": "MOVIE",
+    "Phrase": "JUMANJI"
+  },
+  {
+    "Id": 296,
+    "Category": "MOVIE",
+    "Phrase": "MEN IN BLACK"
+  },
+  {
+    "Id": 297,
+    "Category": "MOVIE",
+    "Phrase": "NATIONAL LAMPOON'S CHRISTMAS VACATION"
+  },
+  {
+    "Id": 298,
+    "Category": "MOVIE",
+    "Phrase": "PIRATES OF THE CARIBBEAN"
+  },
+  {
+    "Id": 299,
+    "Category": "MOVIE",
+    "Phrase": "PULP FICTION"
+  },
+  {
+    "Id": 300,
+    "Category": "MOVIE",
+    "Phrase": "RAIDERS OF THE LOST ARK"
+  },
+  {
+    "Id": 301,
+    "Category": "MOVIE",
+    "Phrase": "REMEMBER THE TITANS"
+  },
+  {
+    "Id": 302,
+    "Category": "MOVIE",
+    "Phrase": "ROCKY"
+  },
+  {
+    "Id": 303,
+    "Category": "MOVIE",
+    "Phrase": "SAVING PRIVATE RYAN"
+  },
+  {
+    "Id": 304,
+    "Category": "MOVIE",
+    "Phrase": "SHAWSHANK REDEMPTION"
+  },
+  {
+    "Id": 305,
+    "Category": "MOVIE",
+    "Phrase": "STAR WARS: A NEW HOPE"
+  },
+  {
+    "Id": 306,
+    "Category": "MOVIE",
+    "Phrase": "THE BREAKFAST CLUB"
+  },
+  {
+    "Id": 307,
+    "Category": "MOVIE",
+    "Phrase": "THE DARK KNIGHT"
+  },
+  {
+    "Id": 308,
+    "Category": "MOVIE",
+    "Phrase": "THE DEPARTED"
+  },
+  {
+    "Id": 309,
+    "Category": "MOVIE",
+    "Phrase": "THE GODFATHER"
+  },
+  {
+    "Id": 310,
+    "Category": "MOVIE",
+    "Phrase": "THE GREEN MILE"
+  },
+  {
+    "Id": 311,
+    "Category": "MOVIE",
+    "Phrase": "THE HANGOVER"
+  },
+  {
+    "Id": 312,
+    "Category": "MOVIE",
+    "Phrase": "THE LORD OF THE RINGS: THE TWO TOWERS"
+  },
+  {
+    "Id": 313,
+    "Category": "MOVIE",
+    "Phrase": "THE PRINCESS BRIDE"
+  },
+  {
+    "Id": 314,
+    "Category": "MOVIE",
+    "Phrase": "THE SILENCE OF THE LAMBS"
+  },
+  {
+    "Id": 315,
+    "Category": "MOVIE",
+    "Phrase": "THE TERMINATOR"
+  },
+  {
+    "Id": 316,
+    "Category": "MOVIE",
+    "Phrase": "THE WIZARD OF OZ"
+  },
+  {
+    "Id": 317,
+    "Category": "MOVIE",
+    "Phrase": "TITANIC"
+  },
+  {
+    "Id": 318,
+    "Category": "MOVIE",
+    "Phrase": "TOP GUN"
+  },
+  {
+    "Id": 319,
+    "Category": "MOVIE",
+    "Phrase": "TOY STORY"
+  },
+  {
+    "Id": 320,
+    "Category": "MOVIE",
+    "Phrase": "WILLY WONKA AND THE CHOCOLATE FACTORY"
+  },
+  {
+    "Id": 321,
+    "Category": "PERSON",
+    "Phrase": "ABRAHAM LINCOLN"
+  },
+  {
+    "Id": 322,
+    "Category": "PERSON",
+    "Phrase": "ALBERT EINSTEIN"
+  },
+  {
+    "Id": 323,
+    "Category": "PERSON",
+    "Phrase": "ARNOLD SCHWARZENEGGER"
+  },
+  {
+    "Id": 324,
+    "Category": "PERSON",
+    "Phrase": "BETTY WHITE"
+  },
+  {
+    "Id": 325,
+    "Category": "PERSON",
+    "Phrase": "BRENT SMITH"
+  },
+  {
+    "Id": 326,
+    "Category": "PERSON",
+    "Phrase": "BRUCE SPRINGSTEEN"
+  },
+  {
+    "Id": 327,
+    "Category": "PERSON",
+    "Phrase": "CHRIS STAPLETON"
+  },
+  {
+    "Id": 328,
+    "Category": "PERSON",
+    "Phrase": "CLINT EASTWOOD"
+  },
+  {
+    "Id": 329,
+    "Category": "PERSON",
+    "Phrase": "DOLLY PARTON"
+  },
+  {
+    "Id": 330,
+    "Category": "PERSON",
+    "Phrase": "DWAYNE JOHNSON"
+  },
+  {
+    "Id": 331,
+    "Category": "PERSON",
+    "Phrase": "ELVIS PRESLEY"
+  },
+  {
+    "Id": 332,
+    "Category": "PERSON",
+    "Phrase": "FREDDIE MERCURY"
+  },
+  {
+    "Id": 333,
+    "Category": "PERSON",
+    "Phrase": "GARTH BROOKS"
+  },
+  {
+    "Id": 334,
+    "Category": "PERSON",
+    "Phrase": "GEORGE WASHINGTON"
+  },
+  {
+    "Id": 335,
+    "Category": "PERSON",
+    "Phrase": "HARRISON FORD"
+  },
+  {
+    "Id": 336,
+    "Category": "PERSON",
+    "Phrase": "JIM CARREY"
+  },
+  {
+    "Id": 337,
+    "Category": "PERSON",
+    "Phrase": "JIMI HENDRIX"
+  },
+  {
+    "Id": 338,
+    "Category": "PERSON",
+    "Phrase": "JOHNNY CASH"
+  },
+  {
+    "Id": 339,
+    "Category": "PERSON",
+    "Phrase": "KEANU REEVES"
+  },
+  {
+    "Id": 340,
+    "Category": "PERSON",
+    "Phrase": "KURT COBAIN"
+  },
+  {
+    "Id": 341,
+    "Category": "PERSON",
+    "Phrase": "LEBRON JAMES"
+  },
+  {
+    "Id": 342,
+    "Category": "PERSON",
+    "Phrase": "LEONARDO DICAPRIO"
+  },
+  {
+    "Id": 343,
+    "Category": "PERSON",
+    "Phrase": "MARILYN MONROE"
+  },
+  {
+    "Id": 344,
+    "Category": "PERSON",
+    "Phrase": "MARK TWAIN"
+  },
+  {
+    "Id": 345,
+    "Category": "PERSON",
+    "Phrase": "MICHAEL JACKSON"
+  },
+  {
+    "Id": 346,
+    "Category": "PERSON",
+    "Phrase": "MICHAEL JORDAN"
+  },
+  {
+    "Id": 347,
+    "Category": "PERSON",
+    "Phrase": "MORGAN FREEMAN"
+  },
+  {
+    "Id": 348,
+    "Category": "PERSON",
+    "Phrase": "OZZY OSBOURNE"
+  },
+  {
+    "Id": 349,
+    "Category": "PERSON",
+    "Phrase": "PATRICK MAHOMES"
+  },
+  {
+    "Id": 350,
+    "Category": "PERSON",
+    "Phrase": "ROBERT DOWNEY JR."
+  },
+  {
+    "Id": 351,
+    "Category": "PERSON",
+    "Phrase": "STEVEN TYLER"
+  },
+  {
+    "Id": 352,
+    "Category": "PERSON",
+    "Phrase": "SULLY ERNA"
+  },
+  {
+    "Id": 353,
+    "Category": "PERSON",
+    "Phrase": "TAYLOR SWIFT"
+  },
+  {
+    "Id": 354,
+    "Category": "PERSON",
+    "Phrase": "TOM HANKS"
+  },
+  {
+    "Id": 355,
+    "Category": "PERSON",
+    "Phrase": "WILLIE NELSON"
+  },
+  {
+    "Id": 356,
+    "Category": "THING",
+    "Phrase": "AIR FRYER"
+  },
+  {
+    "Id": 357,
+    "Category": "THING",
+    "Phrase": "BASEBALL GLOVE"
+  },
+  {
+    "Id": 358,
+    "Category": "THING",
+    "Phrase": "CAST-IRON SKILLET"
+  },
+  {
+    "Id": 359,
+    "Category": "THING",
+    "Phrase": "CORDLESS POWER DRILL"
+  },
+  {
+    "Id": 360,
+    "Category": "THING",
+    "Phrase": "DIGITAL ALARM CLOCK"
+  },
+  {
+    "Id": 361,
+    "Category": "THING",
+    "Phrase": "ELECTRIC GUITAR"
+  },
+  {
+    "Id": 362,
+    "Category": "THING",
+    "Phrase": "FIRE EXTINGUISHER"
+  },
+  {
+    "Id": 363,
+    "Category": "THING",
+    "Phrase": "FISHING ROD"
+  },
+  {
+    "Id": 364,
+    "Category": "THING",
+    "Phrase": "GAMING CONTROLLER"
+  },
+  {
+    "Id": 365,
+    "Category": "THING",
+    "Phrase": "GARDEN HOSE"
+  },
+  {
+    "Id": 366,
+    "Category": "THING",
+    "Phrase": "LEATHER JACKET"
+  },
+  {
+    "Id": 367,
+    "Category": "THING",
+    "Phrase": "MOUNTAIN BIKE"
+  },
+  {
+    "Id": 368,
+    "Category": "THING",
+    "Phrase": "NOISE-CANCELING HEADPHONES"
+  },
+  {
+    "Id": 369,
+    "Category": "THING",
+    "Phrase": "POCKET KNIFE"
+  },
+  {
+    "Id": 370,
+    "Category": "THING",
+    "Phrase": "ROCKING CHAIR"
+  },
+  {
+    "Id": 371,
+    "Category": "THING",
+    "Phrase": "ROLLER SKATES"
+  },
+  {
+    "Id": 372,
+    "Category": "THING",
+    "Phrase": "SMARTPHONE"
+  },
+  {
+    "Id": 373,
+    "Category": "THING",
+    "Phrase": "STAINLESS STEEL WATER BOTTLE"
+  },
+  {
+    "Id": 374,
+    "Category": "THING",
+    "Phrase": "SWISS ARMY KNIFE"
+  },
+  {
+    "Id": 375,
+    "Category": "THING",
+    "Phrase": "TOOLBOX"
+  },
+  {
+    "Id": 376,
+    "Category": "THING",
+    "Phrase": "VACUUM CLEANER"
+  },
+  {
+    "Id": 377,
+    "Category": "THING",
+    "Phrase": "VINTAGE RECORD PLAYER"
+  },
+  {
+    "Id": 378,
+    "Category": "THING",
+    "Phrase": "WASHING MACHINE"
+  },
+  {
+    "Id": 379,
+    "Category": "THING",
+    "Phrase": "WIRELESS COMPUTER MOUSE"
+  },
+  {
+    "Id": 380,
+    "Category": "THING",
+    "Phrase": "WOOD-BURNING FIREPLACE"
+  },
+  {
+    "Id": 381,
+    "Category": "EVENT",
+    "Phrase": "APOLLO 11 MOON LANDING"
+  },
+  {
+    "Id": 382,
+    "Category": "EVENT",
+    "Phrase": "BOSTON TEA PARTY"
+  },
+  {
+    "Id": 383,
+    "Category": "EVENT",
+    "Phrase": "CHRISTMAS DAY"
+  },
+  {
+    "Id": 384,
+    "Category": "EVENT",
+    "Phrase": "DAYTONA 500"
+  },
+  {
+    "Id": 385,
+    "Category": "EVENT",
+    "Phrase": "FOURTH OF JULY"
+  },
+  {
+    "Id": 386,
+    "Category": "EVENT",
+    "Phrase": "KENTUCKY DERBY"
+  },
+  {
+    "Id": 387,
+    "Category": "EVENT",
+    "Phrase": "MACY'S THANKSGIVING DAY PARADE"
+  },
+  {
+    "Id": 388,
+    "Category": "EVENT",
+    "Phrase": "MARDI GRAS"
+  },
+  {
+    "Id": 389,
+    "Category": "EVENT",
+    "Phrase": "NEW YEAR'S EVE"
+  },
+  {
+    "Id": 390,
+    "Category": "EVENT",
+    "Phrase": "OLYMPIC GAMES"
+  },
+  {
+    "Id": 391,
+    "Category": "EVENT",
+    "Phrase": "ROSE BOWL"
+  },
+  {
+    "Id": 392,
+    "Category": "EVENT",
+    "Phrase": "ST. PATRICK'S DAY"
+  },
+  {
+    "Id": 393,
+    "Category": "EVENT",
+    "Phrase": "SUPER BOWL SUNDAY"
+  },
+  {
+    "Id": 394,
+    "Category": "EVENT",
+    "Phrase": "THANKSGIVING DINNER"
+  },
+  {
+    "Id": 395,
+    "Category": "EVENT",
+    "Phrase": "THE BOSTON MARATHON"
+  },
+  {
+    "Id": 396,
+    "Category": "EVENT",
+    "Phrase": "THE GOLD RUSH"
+  },
+  {
+    "Id": 397,
+    "Category": "EVENT",
+    "Phrase": "THE SIGNING OF THE DECLARATION OF INDEPENDENCE"
+  },
+  {
+    "Id": 398,
+    "Category": "EVENT",
+    "Phrase": "TIMES SQUARE BALL DROP"
+  },
+  {
+    "Id": 399,
+    "Category": "EVENT",
+    "Phrase": "WOODSTOCK"
+  },
+  {
+    "Id": 400,
+    "Category": "EVENT",
+    "Phrase": "WORLD SERIES"
   }
 ]

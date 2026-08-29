@@ -40,13 +40,13 @@ namespace PhrasePursuitWeb.Core.Managers
             AddMoneySegments(250, 3);
             AddMoneySegments(300, 3);
             AddMoneySegments(350, 3);
-            AddMoneySegments(400, 3);
+            AddMoneySegments(400, 4);
             AddMoneySegments(500, 2);
             AddMoneySegments(600, 2);
             AddMoneySegments(700, 1);
             AddMoneySegments(800, 1);
 
-            AddSpecialSegments(SpinOutcome.Bankrupt, 3);
+            AddSpecialSegments(SpinOutcome.Bankrupt, 2);
             AddSpecialSegments(SpinOutcome.LoseTurn, 2);
         }
 
