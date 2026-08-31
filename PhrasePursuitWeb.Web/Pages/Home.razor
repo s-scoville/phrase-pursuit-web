@@ -4,24 +4,32 @@
 
 <PageTitle>Phrase Pursuit</PageTitle>
 
-<div class="header">
+<div class="home-page">
+
+    <div class="header">
+
+        <div class="logo-section">
+            @* Logo will go here once one is created *@
+        </div>
     
-    <h1>
-        Phrase Pursuit
-    </h1>
+        <h1>
+            Phrase Pursuit
+        </h1>
 
-</div>
+    </div>
 
-<div class="navigation-section">
+    <div class="navigation-section">
 
-    <button class="new-game-button"
-        @onclick='() => Navigation.NavigateTo("/setup")'>
-        Play Game
-    </button>
+        <button class="new-game-button"
+            @onclick='() => Navigation.NavigateTo("/setup")'>
+            Play Game
+        </button>
 
-    <button class="statistics-button"
-        @onclick='() => Navigation.NavigateTo("/statistics")'>
-        Statistics
-    </button>
+        <button class="statistics-button"
+            @onclick='() => Navigation.NavigateTo("/statistics")'>
+            Statistics
+        </button>
     
+    </div>
+
 </div>
