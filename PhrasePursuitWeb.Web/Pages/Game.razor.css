@@ -1,0 +1,85 @@
+/* CSS for Game component */
+
+.game-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.puzzle-section {
+    width: 100%;
+}
+
+.players-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.interaction-section {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 1.5rem;
+}
+
+.input-section {
+    min-width: 0;
+}
+
+.side-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.spinner-section,
+.status-section {
+    width: 100%;
+}
+
+.controls-section {
+    grid-column: 1 / -1;
+}
+
+.game-over-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .game-page {
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .players-section {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .interaction-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .input-section {
+        order: 1;
+    }
+
+    .side-section {
+        order: 2;
+        gap: 1rem;
+    }
+
+    .controls-section {
+        order: 3;
+    }
+}
