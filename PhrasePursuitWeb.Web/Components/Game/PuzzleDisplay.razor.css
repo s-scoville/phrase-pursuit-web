@@ -17,7 +17,6 @@
 .puzzle-phrase {
     width: 100%;
     white-space: pre-wrap;
-    overflow-wrap: break-word;
 }
 
 @media (max-width: 700px) {
