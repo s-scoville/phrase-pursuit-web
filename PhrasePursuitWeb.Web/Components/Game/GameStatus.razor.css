@@ -1,0 +1,19 @@
+/* CSS for GameStatus component */
+
+.game-status {
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .game-status {
+        min-height: 60px;
+        padding: 0.75rem;
+    }
+}

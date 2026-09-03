@@ -1,0 +1,23 @@
+/* CSS for GameControls component */
+
+.game-controls {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.game-controls button {
+    min-height: 64px;
+}
+
+@media (max-width: 700px) {
+    .game-controls {
+        gap: 0.5rem;
+    }
+
+    .game-controls button {
+        min-width: 0;
+        min-height: 52px;
+    }
+}
