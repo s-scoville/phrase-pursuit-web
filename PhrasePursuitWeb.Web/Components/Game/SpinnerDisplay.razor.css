@@ -1,0 +1,17 @@
+/* CSS for SpinnerDisplay component */
+
+.spinner-display {
+    width: 100%;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .spinner-display {
+        min-height: 100px;
+    }
+}

@@ -17,37 +17,58 @@
 
 <PageTitle>Game Setup | Phrase Pursuit</PageTitle>
 
-<div class="header">
+<div class="setup-page">
 
-    <h1>Phrase Pursuit</h1>
+    <div class="header">
+        <div class="logo-section">
+            @* Logo will go here later *@
+        </div>
+
+        <h1>Phrase Pursuit</h1>
+    </div>
+
+    <main class="setup-section">
+
+        <div class="setup-form">
+
+            <h2>Game Setup</h2>
+
+            <div class="form-field">
+                <label for="playerName">Player Name</label>
+                <input id="playerName"
+                       type="text"
+                       @bind="playerName" />
+            </div>
+
+            <div class="form-field">
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty"
+                        @bind="selectedDifficulty">
+                    <option value="@AiDifficulty.Easy">Easy</option>
+                    <option value="@AiDifficulty.Normal">Normal</option>
+                </select>
+            </div>
+
+            <button class="start-game-button"
+                    @onclick="StartGameAsync">
+                Start Game
+            </button>
+
+            <button class="main-menu-button"
+                    @onclick='() => Navigation.NavigateTo("/")'>
+                Main Menu
+            </button>
+
+            @if (!string.IsNullOrWhiteSpace(errorMessage))
+            {
+                <p class="error-message">@errorMessage</p>
+            }
+
+        </div>
+
+    </main>
 
 </div>
-
-
-<div>
-    <label for="playerName">Player Name</label>
-    <input id="playerName"
-           type="text"
-           @bind="playerName" />
-</div>
-
-<div>
-    <label for="difficulty">Difficulty</label>
-    <select id="difficulty"
-            @bind="selectedDifficulty">
-        <option value="@AiDifficulty.Easy">Easy</option>
-        <option value="@AiDifficulty.Normal">Normal</option>
-    </select>
-</div>
-
-<button @onclick="StartGameAsync">
-    Start Game
-</button>
-
-@if (!string.IsNullOrWhiteSpace(errorMessage))
-{
-    <p>@errorMessage</p>
-}
 
 @code {
     private string playerName = string.Empty;

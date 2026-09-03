@@ -1,0 +1,36 @@
+/* CSS for LetterBoard component */
+
+.letter-board {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.letter-button {
+    min-width: 0;
+    min-height: 60px;
+}
+
+.letter-button:nth-child(22) {
+    grid-column: 2;
+}
+
+@media (max-width: 700px) {
+    .input-section {
+        display: block;
+    }
+
+    .letter-board {
+        width: 100%;
+        max-width: none;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 0.35rem;
+    }
+
+    .letter-button {
+        min-height: 40px;
+    }
+}

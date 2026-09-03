@@ -1,0 +1,134 @@
+/* CSS for Statistics component */
+
+.statistics-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2rem;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.game-record-section,
+.winnings-section {
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+.stats-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.game-record-section .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.winnings-section .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.stat-card {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.75rem;
+}
+
+.stat-label,
+.stat-value {
+    display: block;
+}
+
+.selection-section {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.selection-section > button {
+    min-width: 200px;
+    min-height: 60px;
+}
+
+.reset-confirmation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.reset-confirmation button {
+    min-width: 120px;
+    min-height: 48px;
+}
+
+@media (max-width: 900px) {
+    .game-record-section .stats-grid,
+    .winnings-section .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .statistics-page {
+        padding: 1.5rem;
+    }
+
+    .stats-grid {
+        gap: 1rem;
+    }
+
+    .stat-card {
+        min-height: 100px;
+    }
+
+    .selection-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .selection-section > button {
+        width: min(100%, 320px);
+    }
+
+    .reset-confirmation {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    .reset-confirmation span {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+    }
+
+    .reset-confirmation button {
+        width: 100%;
+        min-width: 0;
+    }
+}

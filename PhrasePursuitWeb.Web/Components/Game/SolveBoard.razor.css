@@ -1,0 +1,67 @@
+/* CSS for SolveBoard component */
+
+.solve-board {
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.solve-board-header {
+    text-align: center;
+}
+
+.solve-board-header h3 {
+    margin: 0;
+}
+
+.input-section {
+    width: 100%;
+}
+
+.solution-input {
+    width: 100%;
+    min-height: 60px;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+}
+
+.validation-message {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.input-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.input-buttons button {
+    flex: 1;
+    min-height: 60px;
+}
+
+@media (max-width: 700px) {
+    .solve-board {
+        width: 95%;
+        max-width: none;
+        margin: 0 auto;
+        gap: 1rem;
+    }
+
+    .solution-input {
+        width: 100%;
+        min-height: 48px;
+        box-sizing: border-box;
+    }
+
+    .input-buttons {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .input-buttons button {
+        min-height: 48px;
+    }
+}

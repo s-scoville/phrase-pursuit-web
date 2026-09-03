@@ -1,3 +1,28 @@
+/* CSS for PuzzleDisplay component */
+
+.puzzle-display {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    box-sizing: border-box;
+}
+
+.puzzle-category {
+    width: 100%;
+}
+
 .puzzle-phrase {
+    width: 100%;
     white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 700px) {
+    .puzzle-display {
+        min-height: 80px;
+        gap: 0.5rem;
+    }
 }
