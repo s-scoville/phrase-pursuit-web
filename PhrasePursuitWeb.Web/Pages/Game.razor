@@ -25,15 +25,15 @@
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[0].Name"
                 CurrentWinnings="@displayedWinnings[0]"
-                IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 0" />
+                IsActive="displayedActivePlayerIndex == 0" />
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[1].Name"
                 CurrentWinnings="@displayedWinnings[1]"
-                IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 1" />
+                IsActive="displayedActivePlayerIndex == 1" />
             <PlayerPanel 
                 PlayerName="@gameManager.CurrentGame.Players[2].Name"
                 CurrentWinnings="@displayedWinnings[2]"
-                IsActive="gameManager.CurrentGame.CurrentPlayerIndex == 2" />
+                IsActive="displayedActivePlayerIndex == 2" />
         </div>
 
         @if (showGameOver)
@@ -108,6 +108,7 @@
     private string gameOverResultMessage = string.Empty;
     private bool isAiTurnInProgress = false;
     private int[] displayedWinnings = new int[3];
+    private int displayedActivePlayerIndex = 0;
     private bool showGameOver = false;
 
     private bool isHumanTurn =>
@@ -142,6 +143,8 @@
             displayedWinnings[i] =
                 gameManager.CurrentGame.Players[i].CurrentWinnings;
         }
+
+        displayedActivePlayerIndex = gameManager.CurrentGame.CurrentPlayerIndex;
     }
 
     private async Task HandleLetterSelectedAsync(char letter)
@@ -309,6 +312,8 @@
             {
                 int aiPlayerIndex =
                     gameManager.CurrentGame.CurrentPlayerIndex;
+
+                displayedActivePlayerIndex = aiPlayerIndex;
 
                 Player aiPlayer =
                     gameManager.CurrentGame.CurrentPlayer;
@@ -525,6 +530,9 @@
             }
             else
             {
+                displayedActivePlayerIndex =
+                    gameManager.CurrentGame.CurrentPlayerIndex;
+
                 statusMessage = "Your turn. Choose an action.";
                 spinnerDisplayText = "---";
             }
@@ -546,6 +554,9 @@
         }
 
         await gameManager.StartNewGameAsync(GameSession.PlayerName);
+
+        displayedActivePlayerIndex =
+            gameManager.CurrentGame.CurrentPlayerIndex;
 
         for (int i = 0; i < gameManager.CurrentGame.Players.Count; i++)
         {
