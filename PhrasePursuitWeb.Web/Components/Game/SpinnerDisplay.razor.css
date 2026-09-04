@@ -6,12 +6,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     box-sizing: border-box;
     text-align: center;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-surface-raised);
+    border-radius: 12px;
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 @media (max-width: 700px) {
     .spinner-display {
         min-height: 100px;
+        padding: 0.75rem;
+        font-size: 1.25rem;
     }
 }

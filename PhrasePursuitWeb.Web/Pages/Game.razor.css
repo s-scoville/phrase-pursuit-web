@@ -14,8 +14,7 @@
 }
 
 .players-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 1.5rem;
 }
 
@@ -64,7 +63,6 @@
     }
 
     .players-section {
-        grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
     }
 
