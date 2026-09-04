@@ -105,15 +105,15 @@ namespace PhrasePursuitWeb.Core.Managers
             {
                 if (!char.IsLetter(c))
                 {
-                    rendered.Append(c == ' ' ? "  " : c + " ");
+                    rendered.Append(c);
                 }
                 else if (guessedLetters.Contains(char.ToUpper(c)))
                 {
-                    rendered.Append(c + " ");
+                    rendered.Append(c);
                 }
                 else
                 {
-                    rendered.Append("_ ");
+                    rendered.Append("_");
                 }
             }
 

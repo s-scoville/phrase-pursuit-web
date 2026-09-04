@@ -180,8 +180,8 @@ namespace PhrasePursuitWeb.Tests.Managers
             string renderedPuzzle = puzzleManager.RenderPuzzle(puzzle, guessedLetters);
 
             // Assert
-            Assert.Contains("S U P E R", renderedPuzzle);
-            Assert.DoesNotContain("M A N", renderedPuzzle);
+            Assert.Contains("SUPER", renderedPuzzle);
+            Assert.DoesNotContain("MAN", renderedPuzzle);
         }
 
 
@@ -197,7 +197,7 @@ namespace PhrasePursuitWeb.Tests.Managers
             string renderedPuzzle = puzzleManager.RenderPuzzle(puzzle, guessedLetters);
 
             // Assert
-            Assert.Contains("C _ _", renderedPuzzle);
+            Assert.Contains("C__", renderedPuzzle);
         }
 
 
