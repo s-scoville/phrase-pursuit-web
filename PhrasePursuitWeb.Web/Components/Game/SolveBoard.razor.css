@@ -1,20 +1,22 @@
 /* CSS for SolveBoard component */
 
 .solve-board {
-    width: 80%;
-    max-width: 800px;
+    width: min(100%, 900px);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
 }
 
 .solve-board-header {
     text-align: center;
 }
 
-.solve-board-header h3 {
-    margin: 0;
-}
+    .solve-board-header h3 {
+        margin: 0;
+        color: var(--color-text-primary);
+        font-size: clamp(1rem, 1.3vw, 1.25rem);
+        letter-spacing: 0.04em;
+    }
 
 .input-section {
     width: 100%;
@@ -25,11 +27,14 @@
     min-height: 60px;
     padding: 0.75rem 1rem;
     box-sizing: border-box;
+    font-size: 1rem;
 }
 
 .validation-message {
     margin-top: 0.5rem;
+    color: var(--color-danger);
     text-align: center;
+    font-size: 0.9rem;
 }
 
 .input-buttons {
@@ -37,31 +42,28 @@
     gap: 1rem;
 }
 
-.input-buttons button {
-    flex: 1;
-    min-height: 60px;
-}
+    .input-buttons button {
+        flex: 1;
+        min-width: 0;
+        min-height: 60px;
+    }
 
 @media (max-width: 700px) {
     .solve-board {
-        width: 95%;
+        width: 100%;
         max-width: none;
-        margin: 0 auto;
         gap: 1rem;
     }
 
     .solution-input {
-        width: 100%;
         min-height: 48px;
-        box-sizing: border-box;
     }
 
     .input-buttons {
-        flex-direction: row;
         gap: 0.75rem;
     }
 
-    .input-buttons button {
-        min-height: 48px;
-    }
+        .input-buttons button {
+            min-height: 48px;
+        }
 }

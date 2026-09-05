@@ -1,17 +1,22 @@
 /* CSS for LetterBoard component */
 
 .letter-board {
-    width: 90%;
-    max-width: 900px;
+    width: min(100%, 760px);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.65rem;
 }
 
 .letter-button {
+    width: 100%;
     min-width: 0;
-    min-height: 60px;
+    min-height: 0;
+    aspect-ratio: 1.05 / 1;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .letter-button:nth-child(22) {
@@ -26,11 +31,11 @@
     .letter-board {
         width: 100%;
         max-width: none;
-        grid-template-columns: repeat(7, minmax(0, 1fr));
         gap: 0.35rem;
     }
 
     .letter-button {
         min-height: 40px;
+        font-size: 1rem;
     }
 }
