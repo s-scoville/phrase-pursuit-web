@@ -50,7 +50,8 @@
                         </div>
 
                         <div class="input-panel">
-                            <SolveBoard OnSubmit="HandleSolveSubmitAsync"
+                            <SolveBoard @key="solveBoardKey"
+                                        OnSubmit="HandleSolveSubmitAsync"
                                         OnCancel="() => isSolveMode = false" />
                         </div>
 
@@ -132,6 +133,8 @@
 
     private TaskCompletionSource? spinnerCompletionSource;
 
+    private int solveBoardKey = 0;
+
 
     private bool isHumanTurn =>
         gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -148,7 +151,8 @@
         isHumanTurn &&
         waitingForAction &&
         !isAiTurnInProgress &&
-        !isSpinnerAnimating;
+        !isSpinnerAnimating &&
+        !isSolveMode;
 
 
     protected override void OnInitialized()
@@ -706,6 +710,8 @@
 
         showGameOver =
             false;
+
+        solveBoardKey++;
     }
 
 
