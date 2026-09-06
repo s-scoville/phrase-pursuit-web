@@ -8,39 +8,47 @@
 
 .header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
+    justify-content: center;
+    padding: clamp(2rem, 6vh, 4rem) 1rem 1rem;
 }
 
-.logo-section {
-    min-width: 180px;
-}
-
-.header h1 {
-    margin: 0;
-}
+    .header h1 {
+        margin: 0;
+        text-align: center;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        letter-spacing: 0.08em;
+        color: var(--color-text-primary);
+    }
 
 .setup-section {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1.5rem;
 }
 
 .setup-form {
-    width: 100%;
-    max-width: 420px;
+    width: min(100%, 420px);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-surface-raised);
+    border-radius: 14px;
 }
 
-.setup-form h2 {
-    margin: 0;
-    text-align: center;
-}
+    .setup-form h2 {
+        margin: 0;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--color-surface-raised);
+        color: var(--color-text-primary);
+        text-align: center;
+        font-size: clamp(1.25rem, 2vw, 1.6rem);
+        letter-spacing: 0.05em;
+    }
 
 .form-field {
     display: flex;
@@ -48,12 +56,18 @@
     gap: 0.5rem;
 }
 
-.form-field input,
-.form-field select {
-    width: 100%;
-    min-height: 48px;
-    box-sizing: border-box;
-}
+    .form-field label {
+        color: var(--color-text-secondary);
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field select {
+        width: 100%;
+        min-height: 52px;
+        box-sizing: border-box;
+    }
 
 .start-game-button,
 .main-menu-button {
@@ -61,27 +75,35 @@
     min-height: 64px;
 }
 
+.error-message {
+    margin: 0;
+    color: var(--color-danger);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 700px) {
     .header {
-        justify-content: center;
-        padding: 2rem 1rem 1rem;
-    }
-
-    .logo-section {
-        display: none;
-    }
-
-    .header h1 {
-        width: 100%;
-        text-align: center;
-        margin: 0;
+        padding-top: 2rem;
     }
 
     .setup-section {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     .setup-form {
-        max-width: 320px;
+        width: min(100%, 360px);
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    .form-field input,
+    .form-field select {
+        min-height: 48px;
+    }
+
+    .start-game-button,
+    .main-menu-button {
+        min-height: 52px;
     }
 }

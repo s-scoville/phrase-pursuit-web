@@ -1,8 +1,199 @@
 ﻿<div class="spinner-display">
-    @DisplayText
+
+    <div class="spinner-selection"></div>
+
+    <div class="spinner-reel @(isStepAnimating ? "step-moving" : "")"
+         style="--step-duration: @(stepDuration)ms;">
+
+        <div class="spinner-item spinner-item-top">
+            @GetDisplayValue(-2)
+        </div>
+
+        <div class="spinner-item spinner-item-upper">
+            @GetDisplayValue(-1)
+        </div>
+
+        <div class="spinner-item spinner-item-center">
+            @GetDisplayValue(0)
+        </div>
+
+        <div class="spinner-item spinner-item-lower">
+            @GetDisplayValue(1)
+        </div>
+
+        <div class="spinner-item spinner-item-bottom">
+            @GetDisplayValue(2)
+        </div>
+
+        <div class="spinner-item spinner-item-incoming">
+            @GetDisplayValue(3)
+        </div>
+
+    </div>
+
 </div>
 
 @code {
     [Parameter]
     public string DisplayText { get; set; } = "---";
+
+    [Parameter]
+    public int SpinNumber { get; set; }
+
+    [Parameter]
+    public EventCallback OnSpinCompleted { get; set; }
+
+    private readonly string[] reelValues =
+    {
+        "$100",
+        "$300",
+        "$600",
+        "$200",
+        "$500",
+        "BANKRUPT",
+        "$400",
+        "$150",
+        "$700",
+        "$250",
+        "$400",
+        "LOSE TURN",
+        "$350",
+        "$200",
+        "$500",
+        "$300",
+        "$800",
+        "$400",
+        "$250",
+        "$600",
+        "$350",
+        "$200",
+        "BANKRUPT",
+        "$300",
+        "$400",
+        "$150",
+        "$250",
+        "$350",
+        "LOSE TURN",
+        "$350"
+    };
+
+    private int currentIndex;
+    private int previousSpinNumber;
+    private bool initialized;
+    private bool isStepAnimating = false;
+    private int stepDuration = 35;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!initialized)
+        {
+            initialized = true;
+
+            if (DisplayText != "---")
+            {
+                SetCurrentIndex(DisplayText);
+            }
+
+            previousSpinNumber = SpinNumber;
+            return;
+        }
+
+        if (SpinNumber != previousSpinNumber)
+        {
+            previousSpinNumber = SpinNumber;
+            await AnimateSpinAsync(DisplayText);
+        }
+    }
+
+    private async Task AnimateSpinAsync(string targetValue)
+    {
+        int targetIndex = FindNextTargetIndex(targetValue);
+
+        if (targetIndex < 0)
+        {
+            return;
+        }
+
+        int distance =
+            (targetIndex - currentIndex + reelValues.Length)
+            % reelValues.Length;
+
+        int totalSteps = (reelValues.Length * 2) + distance;
+
+        for (int step = 0; step < totalSteps; step++)
+        {
+            stepDuration = GetSpinDelay(step, totalSteps);
+
+            isStepAnimating = true;
+            await InvokeAsync(StateHasChanged);
+
+            await Task.Delay(stepDuration);
+
+            currentIndex =
+                (currentIndex + 1)
+                % reelValues.Length;
+
+            isStepAnimating = false;
+            await InvokeAsync(StateHasChanged);
+
+            await Task.Delay(8);
+        }
+
+        await OnSpinCompleted.InvokeAsync();
+    }
+
+    private int FindNextTargetIndex(string targetValue)
+    {
+        for (int offset = 1; offset <= reelValues.Length; offset++)
+        {
+            int index =
+                (currentIndex + offset)
+                % reelValues.Length;
+
+            if (reelValues[index] == targetValue)
+            {
+                return index;
+            }
+        }
+
+        return -1;
+    }
+
+    private int GetSpinDelay(int step, int totalSteps)
+    {
+        double progress =
+            (double)step / totalSteps;
+
+        return progress switch
+        {
+            < 0.60 => 35,
+            < 0.75 => 55,
+            < 0.85 => 80,
+            < 0.92 => 110,
+            < 0.97 => 150,
+            _ => 210
+        };
+    }
+
+    private void SetCurrentIndex(string value)
+    {
+        int index =
+            Array.FindIndex(
+                reelValues,
+                item => item == value);
+
+        if (index >= 0)
+        {
+            currentIndex = index;
+        }
+    }
+
+    private string GetDisplayValue(int offset)
+    {
+        int index =
+            (currentIndex + offset + reelValues.Length)
+            % reelValues.Length;
+
+        return reelValues[index];
+    }
 }

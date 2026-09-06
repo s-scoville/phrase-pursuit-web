@@ -168,7 +168,7 @@ namespace PhrasePursuitWeb.Tests.AI
         [Theory]
         [InlineData(AiDifficulty.Easy)]
         [InlineData(AiDifficulty.Normal)]
-        public void AttemptSolve_LowPuzzleCompletion_ReturnsEmptyString(AiDifficulty difficulty)
+        public void AttemptSolve_LowPuzzleCompletion_ReturnsIncorrectSolution(AiDifficulty difficulty)
         {
             // Arrange
             Puzzle currentPuzzle = new Puzzle(1, "RANDOM", "EEEAAAA");
@@ -186,7 +186,7 @@ namespace PhrasePursuitWeb.Tests.AI
             string result = aiController.AttemptSolve(newGame);
 
             // Assert
-            Assert.Equal(string.Empty, result);
+            Assert.Equal("INCORRECT SOLUTION", result);
         }
 
 

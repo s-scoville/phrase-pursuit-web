@@ -1,13 +1,121 @@
+:root {
+    /* Theme */
+    --color-background: #111827;
+    --color-surface: #1E293B;
+    --color-surface-raised: #27364B;
+    --color-primary: #2563EB;
+    --color-primary-bright: #3B82F6;
+    --color-text-primary: #F8FAFC;
+    --color-text-secondary: #CBD5E1;
+    --color-text-muted: #64748B;
+    
+    /* Semantic */
+    --color-success: #26B050;
+    --color-danger: #DC2626;
+}
+
+html,
+body {
+    min-height: 100%;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+}
+
+body {
+    margin: 0;
+}
+
+button {
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+    button:hover:not(:disabled) {
+        background-color: var(--color-primary-bright);
+    }
+
+    button:active:not(:disabled) {
+        transform: translateY(1px);
+    }
+
+    button:focus-visible {
+        outline: 2px solid var(--color-primary-bright);
+        outline-offset: 2px;
+    }
+
+    button:disabled {
+        background-color: var(--color-surface-raised);
+        color: var(--color-text-muted);
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+
+input,
+select {
+    background-color: var(--color-surface);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-surface-raised);
+    border-radius: 8px;
+    padding: 0.75rem;
+    font: inherit;
+    box-sizing: border-box;
+    transition: 
+        background-color 0.2s ease, 
+        border-color 0.2s ease, 
+        box-shadow 0.2s ease;
+}
+
+    input::placeholder {
+        color: var(--color-text-muted);
+    }
+
+    input:focus,
+    select:focus {
+        border-color: var(--color-primary-bright);
+        outline: 2px solid transparent;
+        box-shadow: 0 0 0 2px var(--color-primary);
+    }
+
+    input:disabled,
+    select:disabled {
+        background-color: var(--color-surface-raised);
+        color: var(--color-text-muted);
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 2.75rem;
+    background-image: linear-gradient(45deg, transparent 50%, var(--color-text-secondary) 50%), linear-gradient(135deg, var(--color-text-secondary) 50%, transparent 50%);
+    background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+    select:hover:not(:disabled) {
+        border-color: var(--color-primary-bright);
+        background-color: var(--color-surface-raised);
+    }
+
 .valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+    outline: 1px solid var(--color-success);
 }
 
 .invalid {
-    outline: 1px solid red;
+    outline: 1px solid var(--color-danger);
 }
 
 .validation-message {
-    color: red;
+    color: var(--color-danger);
 }
 
 #blazor-error-ui {
@@ -52,14 +160,14 @@
 
     .loading-progress circle {
         fill: none;
-        stroke: #e0e0e0;
+        stroke: var(--color-surface-raised);
         stroke-width: 0.6rem;
         transform-origin: 50% 50%;
         transform: rotate(-90deg);
     }
 
         .loading-progress circle:last-child {
-            stroke: #1b6ec2;
+            stroke: var(--color-primary);
             stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
             transition: stroke-dasharray 0.05s ease-in-out;
         }

@@ -14,9 +14,16 @@
 }
 
 .players-section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 1.5rem;
+}
+
+.gameplay-area {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .interaction-section {
@@ -29,9 +36,35 @@
 
 .input-section {
     min-width: 0;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.input-track {
+    width: 200%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    transform: translateX(0);
+    transition: transform 300ms ease-in-out;
+    will-change: transform;
+}
+
+    .input-track.show-solve {
+        transform: translateX(-50%);
+    }
+
+.input-panel {
+    flex: 0 0 50%;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 0.5rem;
+    box-sizing: border-box;
 }
 
 .side-section {
@@ -50,11 +83,36 @@
     grid-column: 1 / -1;
 }
 
-.game-over-section {
-    flex: 1;
+.game-over-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background-color: rgba(17, 24, 39, 0.78);
+    overflow: hidden;
+}
+
+.game-over-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: game-over-slide-in 400ms ease-out forwards;
+}
+
+@keyframes game-over-slide-in {
+    from {
+        transform: translateY(120%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 700px) {
@@ -64,7 +122,6 @@
     }
 
     .players-section {
-        grid-template-columns: repeat(3, 1fr);
         gap: 0.5rem;
     }
 
@@ -85,5 +142,9 @@
 
     .controls-section {
         order: 3;
+    }
+
+    .game-over-overlay {
+        padding: 1rem;
     }
 }

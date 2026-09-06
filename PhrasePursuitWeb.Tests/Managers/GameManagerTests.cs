@@ -91,7 +91,7 @@ namespace PhrasePursuitWeb.Tests.Managers
             string puzzleDisplay = gameManager.GetPuzzleDisplay();
 
             // Assert
-            Assert.Equal("_ A _ _ _ _ _ L L _", puzzleDisplay);
+            Assert.Equal("_A_____LL_", puzzleDisplay);
         }
 
 
@@ -347,7 +347,7 @@ namespace PhrasePursuitWeb.Tests.Managers
             // Assert
             Assert.True(solveResult.WasCorrect);
             Assert.True(gameManager.CurrentGame.IsGameOver);
-            Assert.Equal("F A I T H F U L L Y", gameManager.GetPuzzleDisplay());
+            Assert.Equal("FAITHFULLY", gameManager.GetPuzzleDisplay());
             Assert.Equal(1, statisticsManager.Statistics.GamesPlayed);
             Assert.Equal(1, statisticsManager.Statistics.GamesWon);
             Assert.Equal(0, statisticsManager.Statistics.GamesLost);
