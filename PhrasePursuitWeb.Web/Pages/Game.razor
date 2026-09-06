@@ -68,8 +68,9 @@
                 <div class="side-section">
 
                     <div class="spinner-section">
-                        <SpinnerDisplay 
-                            DisplayText="@spinnerDisplayText" />
+                        <SpinnerDisplay DisplayText="@spinnerDisplayText"
+                                        SpinNumber="@spinnerSpinNumber"
+                                        OnSpinCompleted="HandleSpinnerCompleted" />
                     </div>
 
                     <div class="status-section">
@@ -102,6 +103,7 @@
 @code {
     private GameManager? gameManager;
     private string spinnerDisplayText = "---";
+    private int spinnerSpinNumber = 0;
     private string statusMessage = string.Empty;
     private string puzzleDisplayText = string.Empty;
     private bool isSolveMode = false;
@@ -110,6 +112,8 @@
     private int[] displayedWinnings = new int[3];
     private int displayedActivePlayerIndex = 0;
     private bool showGameOver = false;
+    private bool isSpinnerAnimating = false;
+    private TaskCompletionSource? spinnerCompletionSource;
 
     private bool isHumanTurn =>
     gameManager?.CurrentGame.CurrentPlayer.PlayerType == PlayerType.Player;
@@ -125,7 +129,8 @@
     private bool canHumanAct =>
         isHumanTurn &&
         waitingForAction &&
-        !isAiTurnInProgress;
+        !isAiTurnInProgress &&
+        !isSpinnerAnimating;
 
     protected override void OnInitialized()
     {
@@ -231,6 +236,8 @@
             SpinOutcome.LoseTurn => "LOSE TURN",
             _ => "---"
         };
+
+        await WaitForSpinnerAsync();
 
         gameManager.ApplySpinResult(spinResult);
 
@@ -351,6 +358,8 @@
 
                                 _ => "---"
                             };
+
+                            await WaitForSpinnerAsync();
 
                             statusMessage = result.SpinResult.Outcome switch
                             {
@@ -570,5 +579,27 @@
         gameOverResultMessage = string.Empty;
         isSolveMode = false;
         showGameOver = false;
+    }
+
+    private void HandleSpinnerCompleted()
+    {
+        isSpinnerAnimating = false;
+        spinnerCompletionSource?.TrySetResult();
+    }
+
+    private async Task WaitForSpinnerAsync()
+    {
+        spinnerCompletionSource =
+            new TaskCompletionSource();
+
+        isSpinnerAnimating = true;
+
+        spinnerSpinNumber++;
+
+        StateHasChanged();
+
+        await spinnerCompletionSource.Task;
+
+        spinnerCompletionSource = null;
     }
 }
